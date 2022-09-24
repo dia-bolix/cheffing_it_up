@@ -16,5 +16,7 @@ We will be making a cookbook API which stores recipes.
 - Share recipes (with a link or txt file)
 - Search for a recipe
 - Adding images to a recipe
-
+- Enter in ingredients and return a set of recipes
+- Sort by recipe price based on prices from large retailer (Walmart)
+- 
 ## Design
