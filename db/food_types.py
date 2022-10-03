@@ -1,10 +1,10 @@
 
 """
-This is a module to detail our food types 
+This is a module to detail our food types
 """
 
 BREAKFAST = 'breakfast'
 LUNCH = 'lunch'
 DINNER = 'dinner'
 
-FOOD_TYPES = {BREAKFAST: {'
+# FOOD_TYPES = {BREAKFAST: {'
