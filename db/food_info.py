@@ -3,7 +3,13 @@ This module encapsulates details about the food
 """
 
 
-FOOD_INFO = {FOOD: {'Calories': 100, 'Vitamins': ABCD, 'ingredients' = Water}}
+
+listOfFoods = ["Apple Pie", "Pumpkin Pie", "Blueberry Muffin"]
+FOOD_INFO = {"APPLE PIE" : {'Calories': 67,'Vitamins': AC, 'Ingredients':Apples-wheat flour-oil-cream-sugar},
+	    {"PUMPKIN PIE" : {'Calories': 67, 'Vitamins':	
+FOOD_INFO_TEST = {FOOD: {'Calories': 100, 'Vitamins': ABCD, 'ingredients' = Water}}
+
+
 
 def get_food_info(():
     return list(FOOD_INTO.keys())
