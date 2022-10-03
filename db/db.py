@@ -5,8 +5,10 @@ Gradually, we will fill in actual calls to our datastore.
 """
 
 
-def fetch_pets():
+def fetch_meal_type():
     """
-    A function to return all pets in the data store.
+    A function returs the avaiable types of meals in the database
+    Placeholder numbers for now
+    Will a away to see the types of food and their respective category
     """
-    return {"tigers": 2, "lions": 3, "zebras": 1}
+    return {"Breakfast": 1000, "Lunch": 3000, "Dinner": 5000}
