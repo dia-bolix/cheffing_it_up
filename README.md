@@ -1,4 +1,4 @@
-# demo-repo3
+# Cheffing It Up
 
 An example flask rest API server, for SE Fall 2022.
 
