@@ -2,18 +2,25 @@
 This is the file containing all of the endpoints for our flask app.
 The endpoint called `endpoints` will return all available endpoints.
 """
-
+from http import HTTPStatus
 from flask import Flask
-from flask_restx import Resource, Api
+from flask_restx import Resource, Api, fields
+import werkzeug.exceptions as wz
 # import db.db as db
+
+import db.food_types as ftyp
 
 app = Flask(__name__)
 api = Api(app)
 
 LIST = 'list'
+DETAILS = 'details'
 HELLO = '/hello'
 MESSAGE = 'message'
-CHAR_TYPE_LIST = f'/character_types/{LIST}'
+MAIN_MENU = '/main_menu'
+MAIN_MENU_NM = 'Main Menu'
+CHAR_TYPES_NS = 'character_types'
+CHAR_TYPE_LIST = f'/{CHAR_TYPES_NS}/{LIST}'
 CHAR_TYPE_LIST_NM = 'character_types_list'
 
 A_CHAR_TYPE = 'Wizard'
@@ -33,6 +40,16 @@ class HelloWorld(Resource):
         """
         return {MESSAGE: 'hello world'}
 
+@api.route(MAIN_MENU)
+class MainMenu(Resource):
+    """
+    This will deliver our main menu.
+    """
+    def get(self):
+        """
+        Gets the main recipe menu.
+        """
+        return {MAIN_MENU_NM: {'the': 'menu'}}
 
 @api.route(CHAR_TYPE_LIST)
 class CharacterTypeList(Resource):
