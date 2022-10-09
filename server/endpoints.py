@@ -24,7 +24,6 @@ CHAR_TYPE_LIST = f'/{CHAR_TYPES_NS}/{LIST}'
 CHAR_TYPE_LIST_NM = 'character_types_list'
 
 
-
 A_CHAR_TYPE = 'Wizard'
 ANOTHER_CHAR_TYPE = 'Warrior'
 
