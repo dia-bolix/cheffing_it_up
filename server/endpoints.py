@@ -42,6 +42,7 @@ class HelloWorld(Resource):
         """
         return {MESSAGE: 'hello world'}
 
+
 @api.route(MAIN_MENU)
 class MainMenu(Resource):
     """
@@ -52,6 +53,7 @@ class MainMenu(Resource):
         Gets the main recipe menu.
         """
         return {MAIN_MENU_NM: {'the': 'menu'}}
+
 
 @api.route(CHAR_TYPE_LIST)
 class CharacterTypeList(Resource):
