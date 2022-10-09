@@ -6,26 +6,21 @@
 # 	pydoc3 -w ./$<
 # 	git add $@
 
+LINTER = flake8
+PYTESTFLAGS = -vv --verbose --tb=short
 
-API_DIR = server
-DB_DIR = db
-REQ_DIR = .
 
 FORCE:
 
-prod: all_tests github
+tests: lint unit
 
-github: FORCE
-	- git commit -a
-	git push origin master
+unit: FORCE
+	pytest $(PYTESTFLAGS)
 
-all_tests: FORCE
-	cd $(DB_DIR); make tests
-	cd $(API_DIR); make tests
+lint: FORCE
+	$(LINTER) *.py
 
-dev_env: FORCE
-	pip install -r $(REQ_DIR)/requirements-dev.txt
+# test a python file:
+%.py: FORCE
+	pytest -s tests/test_$*.py
 
-docs: FORCE
-	cd $(API_DIR); make docs
-	cd $(DB_DIR); make docs
