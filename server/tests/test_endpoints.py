@@ -19,8 +19,8 @@ def test_get_character_type_list():
     Return should look like:
         {CHAR_TYPE_LIST_NM: [list of chars types...]}
     """
-    resp_json = TEST_CLIENT.get(ep.CHAR_TYPE_LIST).get_json()
-    assert isinstance(resp_json[ep.CHAR_TYPE_LIST_NM], list)
+    resp_json = TEST_CLIENT.get(ep.FOOD_TYPE_LIST).get_json()
+    assert isinstance(resp_json[ep.FOOD_TYPE_LIST_NM], list)
 
 
 def test_get_character_type_list_not_empty():
@@ -29,6 +29,6 @@ def test_get_character_type_list_not_empty():
     Return should look like:
         {CHAR_TYPE_LIST_NM: [list of chars types...]}
     """
-    resp_json = TEST_CLIENT.get(ep.CHAR_TYPE_LIST).get_json()
-    assert len(resp_json[ep.CHAR_TYPE_LIST_NM]) > 0
+    resp_json = TEST_CLIENT.get(ep.FOOD_TYPE_LIST).get_json()
+    assert len(resp_json[ep.FOOD_TYPE_LIST_NM]) > 0
 
