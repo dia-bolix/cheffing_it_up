@@ -1,5 +1,5 @@
-from lib2to3.pytree import type_repr
-from msilib.schema import Error
+# from lib2to3.pytree import type_repr
+# from msilib.schema import Error
 import pytest 
 
 import db.food_menu as fm
