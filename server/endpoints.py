@@ -19,9 +19,13 @@ HELLO = '/hello'
 MESSAGE = 'message'
 MAIN_MENU = '/main_menu'
 MAIN_MENU_NM = 'Main Menu'
-CHAR_TYPES_NS = 'character_types'
-CHAR_TYPE_LIST = f'/{CHAR_TYPES_NS}/{LIST}'
-CHAR_TYPE_LIST_NM = 'character_types_list'
+
+FOOD_TYPES_NS = 'food_types'
+FOOD_TYPE_LIST = f'/{FOOD_TYPES_NS}/{LIST}'
+FOOD_TYPE_LIST_NM = '{character_types_NS}_list'
+FOOD_TYPE_DETAILS = f'/{FOOD_TYPES_NS}/{DETAILS}'
+
+
 
 
 A_CHAR_TYPE = 'Wizard'
@@ -54,7 +58,7 @@ class MainMenu(Resource):
         return {MAIN_MENU_NM: {'the': 'menu'}}
 
 
-@api.route(CHAR_TYPE_LIST)
+@api.route(FOOD_TYPE_LIST)
 class CharacterTypeList(Resource):
     """
     This will get a list of character types.
@@ -63,7 +67,25 @@ class CharacterTypeList(Resource):
         """
         Returns a list of character types.
         """
-        return {CHAR_TYPE_LIST_NM: [A_CHAR_TYPE, ANOTHER_CHAR_TYPE]}
+        return {FOOD_TYPE_LIST_NM: ftyp.get_food_types()}
+
+
+@api.route(f'{FOOD_TYPE_DETAILS}/<food_type>')
+class CharacterTypeDetails(Resource):
+    """
+    This will return details on a character type.
+    """
+    @api.response(HTTPStatus.OK, 'Success')
+    @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
+    def get(self, food_type):
+        """
+        This will return details on a character type.
+        """
+        ct = ftyp.get_char_type_details(food_type)
+        if ct is not None:
+            return {food_type: ftyp.get_char_type_details(food_type)}
+        else:
+            raise wz.NotFound(f'{food_type} not found.')
 
 
 @api.route('/endpoints')

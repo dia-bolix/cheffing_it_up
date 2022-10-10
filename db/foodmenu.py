@@ -34,7 +34,6 @@ food = {TEST_MENU: {NAME: 'CAKE',
                         CALORIES: 323, 
                         MACRONUTRIENTS: "Fats: 13g, Carbs: 46g, Protein: 52.g", 
                         MICRONUTRIENTS: "Vitamin A: 91%, Calcium: 6.5%, Iron: 6.7%"},
-
              }
 
 
