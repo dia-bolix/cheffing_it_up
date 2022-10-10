@@ -23,5 +23,5 @@ def main():
     food_types = get_food_types()
     print(food_types)
 
-def __name__ == '__main__':
+if __name__ == '__main__':
     main()
