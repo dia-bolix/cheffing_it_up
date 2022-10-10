@@ -1,5 +1,5 @@
 """
-This module encapsulates details about the food. 
+This module encapsulates details about the food.
 WILL DELETE
 """
 
