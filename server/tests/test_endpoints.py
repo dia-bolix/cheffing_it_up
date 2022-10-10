@@ -1,10 +1,10 @@
 
-import pytest
+# import pytest
 
-import server.endpoints as ep
+# import server.endpoints as ep
 
-TEST_CLIENT = ep.app.test_client()
-TEST_FOOD_TYPE = 'Breakfast'
+# TEST_CLIENT = ep.app.test_client()
+# TEST_FOOD_TYPE = 'Breakfast'
 
 # def test_hello():
 #     """
