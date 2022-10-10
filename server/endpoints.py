@@ -35,7 +35,6 @@ MENU_DETAILS = f'{MENU_NS}/{DETAILS}'
 MENU_ADD = f'{MENU_NS}/{ADD}'
 
 
-
 @api.route(HELLO)
 class HelloWorld(Resource):
     """
@@ -91,6 +90,7 @@ class CharacterTypeDetails(Resource):
         else:
             raise wz.NotFound(f'{food_type} not found.')
 
+
 @api.route(MENU_LIST)
 class MenuList(Resource):
     """
@@ -101,6 +101,7 @@ class MenuList(Resource):
         Returns a list of current menus
         """
         return {MENU_LIST_NM: fm.get_food()}
+
 
 @api.route(f'{MENU_DETAILS}/<menu>')
 class MenuDetails(Resource):
@@ -128,6 +129,7 @@ menu_fields = api.model('NewMenu', {
     fm.MACRONUTRIENTS: fields.String,
     fm.MICRONUTRIENTS: fields.String
 })
+
 
 @api.route(MENU_ADD)
 class AddMenu(Resource):
