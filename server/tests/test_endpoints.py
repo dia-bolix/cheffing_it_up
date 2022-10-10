@@ -1,5 +1,6 @@
 
 import pytest
+
 import server.endpoints as ep
 
 TEST_CLIENT = ep.app.test_client()
@@ -33,7 +34,7 @@ def test_get_food_type_list_not_empty():
     assert len(resp_json[ep.FOOD_TYPE_LIST_NM]) > 0
 
 
-def test_getfood_type_details():
+def test_get_food_type_details():
     """
     testing testing
     """

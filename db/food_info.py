@@ -1,5 +1,6 @@
 """
-This module encapsulates details about the food
+This module encapsulates details about the food. 
+WILL DELETE
 """
 
 listOfFoods = ["Apple Pie", "Pumpkin Pie", "Blueberry Muffin"]
