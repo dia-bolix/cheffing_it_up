@@ -19,9 +19,12 @@ def get_food_types():
 def get_food_types_details(food_type):
     return FOOD_TYPES.get(food_type, None)
 
+
 def main():
     food_types = get_food_types()
     print(food_types)
 
+
 if __name__ == '__main__':
     main()
+    
