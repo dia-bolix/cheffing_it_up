@@ -10,7 +10,7 @@ import werkzeug.exceptions as wz
 # import db.db as db
 
 import db.food_types as ftyp
-import db.foodmenu as fm
+import db.food_menu as fm
 
 app = Flask(__name__)
 api = Api(app)
