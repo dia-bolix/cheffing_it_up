@@ -2,8 +2,6 @@
 This module encapsulates the details of the menu
 """
 
-from typing import Type
-
 
 TEST_MENU = 'Test Menu'
 
