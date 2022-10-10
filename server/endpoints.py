@@ -9,8 +9,8 @@ from flask_restx import Resource, Api, fields
 import werkzeug.exceptions as wz
 # import db.db as db
 
-import cheffing_it_up.db.food_types as ftyp
-import cheffing_it_up.db.food_menu as fm
+import db.food_types as ftyp
+import db.food_menu as fm
 
 app = Flask(__name__)
 api = Api(app)

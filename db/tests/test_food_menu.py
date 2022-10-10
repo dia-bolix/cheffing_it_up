@@ -2,7 +2,7 @@
 # from msilib.schema import Error
 import pytest
 
-import cheffing_it_up.db.food_menu as fm
+import db.food_menu as fm
 
 
 def test_get_menu():
