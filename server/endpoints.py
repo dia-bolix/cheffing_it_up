@@ -25,14 +25,14 @@ MAIN_MENU_NM = 'Main Menu'
 
 FOOD_TYPES_NS = 'food_types'
 FOOD_TYPE_LIST = f'/{FOOD_TYPES_NS}/{LIST}'
-FOOD_TYPE_LIST_NM = '{character_types_NS}_list'
+FOOD_TYPE_LIST_NM = '{FOOD_TYPES_NS}_list'
 FOOD_TYPE_DETAILS = f'/{FOOD_TYPES_NS}/{DETAILS}'
 
-MENU_NS = 'menu'
+MENU_NS = 'food_menu'
 MENU_LIST = f'/{MENU_NS}/{LIST}'
 MENU_LIST_NM = '{MENU_NS}_list'
-MENU_DETAILS = f'{MENU_NS}/{DETAILS}'
-MENU_ADD = f'{MENU_NS}/{ADD}'
+MENU_DETAILS = f'/{MENU_NS}/{DETAILS}'
+MENU_ADD = f'/{MENU_NS}/{ADD}'
 
 
 @api.route(HELLO)
@@ -62,7 +62,7 @@ class MainMenu(Resource):
 
 
 @api.route(FOOD_TYPE_LIST)
-class CharacterTypeList(Resource):
+class FoodTypeList(Resource):
     """
     This will get a list of character types.
     """
@@ -73,22 +73,22 @@ class CharacterTypeList(Resource):
         return {FOOD_TYPE_LIST_NM: ftyp.get_food_types()}
 
 
-@api.route(f'{FOOD_TYPE_DETAILS}/<food_type>')
-class CharacterTypeDetails(Resource):
+@api.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
+class FoodTypeDetails(Resource):
     """
     This will return details on a character type.
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
-    def get(self, food_type):
+    def get(self, food_types):
         """
         This will return details on a character type.
         """
-        ct = ftyp.get_char_type_details(food_type)
+        ct = ftyp.get_food_types_details(food_types)
         if ct is not None:
-            return {food_type: ftyp.get_char_type_details(food_type)}
+            return {food_types: ftyp.get_food_types_details(food_types)}
         else:
-            raise wz.NotFound(f'{food_type} not found.')
+            raise wz.NotFound(f'{food_types} not found.')
 
 
 @api.route(MENU_LIST)
@@ -103,12 +103,12 @@ class MenuList(Resource):
         return {MENU_LIST_NM: fm.get_food()}
 
 
-@api.route(f'{MENU_DETAILS}/<menu>')
+@api.route(f'{MENU_DETAILS}/<food_types>')
 class MenuDetails(Resource):
     """
     this will return details on menu
     """
-    @api.response(HTTPStatus.ok, 'Success')
+    @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def get(self, menu):
         """
