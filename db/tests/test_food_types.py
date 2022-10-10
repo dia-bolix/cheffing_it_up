@@ -1,4 +1,4 @@
-import db.food_types as ft
+import cheffing_it_up.db.food_types as ft
 
 def test_get_food_types():
 	food_type_list = ft.get_food_types()
