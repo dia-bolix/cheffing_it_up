@@ -39,18 +39,31 @@ food = {TEST_MENU: {NAME: 'CAKE',
 
 
 def menu_exists(name):
+    """
+    Returns a true/false value given the name of a menu item.
+    """
     return name in food
 
 
 def get_food():
+    """
+    Returns a list of all the current names of food available.
+    """
     return list(food.keys())
 
 
 def get_food_details(name):
+    """
+    Given the name of a food, returns a dictonary with the nutritional details.
+    """
     return food.get(name, None)
 
 
 def add_food(name, details):
+    """
+    Given the name of a food and a dictonary with it's nutritional values,
+    will check if it's a vaild entry then add to the list of foods.
+    """
     if not isinstance(name, str):
         raise TypeError(f'Wrong type for name: {type(name)=}')
     if not isinstance(details, dict):
@@ -65,6 +78,7 @@ def main():
     food = get_food()
     print(f'{food=}')
     print(f'{get_food_details(TEST_MENU)=}')
+    print(get_food_details("Apple Pie"))
 
 
 if __name__ == '__main__':

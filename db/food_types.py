@@ -13,10 +13,18 @@ FOOD_TYPES = {BREAKFAST: {'time': "6am - 8am"},
 
 
 def get_food_types():
+    """
+    This fuction returns the types of food available. As of now this includes
+    breakfast, lunch, and dinner.
+    """
     return list(FOOD_TYPES.keys())
 
 
 def get_food_types_details(food_type):
+    """
+    Returns details pertaining to a specific food type. As of now this is the
+    time of day a meal type is served.
+    """
     return FOOD_TYPES.get(food_type, None)
 
 
