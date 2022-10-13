@@ -8,10 +8,21 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>endpoints</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/gcallah/GitProjects/flask-api/source/endpoints.py">/Users/gcallah/GitProjects/flask-api/source/endpoints.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/rosio/Documents/cheffing_it_up/server/endpoints.py">/home/rosio/Documents/cheffing_it_up/server/endpoints.py</a></font></td></tr></table>
     <p><tt>This&nbsp;is&nbsp;the&nbsp;file&nbsp;containing&nbsp;all&nbsp;of&nbsp;the&nbsp;endpoints&nbsp;for&nbsp;our&nbsp;flask&nbsp;app.<br>
 The&nbsp;endpoint&nbsp;called&nbsp;`endpoints`&nbsp;will&nbsp;return&nbsp;all&nbsp;available&nbsp;endpoints.</tt></p>
 <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="flask_restx.fields.html">flask_restx.fields</a><br>
+</td><td width="25%" valign=top><a href="db.food_menu.html">db.food_menu</a><br>
+</td><td width="25%" valign=top><a href="db.food_types.html">db.food_types</a><br>
+</td><td width="25%" valign=top><a href="werkzeug.exceptions.html">werkzeug.exceptions</a><br>
+</td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -22,9 +33,14 @@ The&nbsp;endpoint&nbsp;called&nbsp;`endpoints`&nbsp;will&nbsp;return&nbsp;all&nb
 <dt><font face="helvetica, arial"><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>(<a href="flask.views.html#MethodView">flask.views.MethodView</a>)
 </font></dt><dd>
 <dl>
-<dt><font face="helvetica, arial"><a href="endpoints.html#Endpoints">Endpoints</a>
+<dt><font face="helvetica, arial"><a href="endpoints.html#AddMenu">AddMenu</a>
+</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#Endpoints">Endpoints</a>
+</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#FoodTypeDetails">FoodTypeDetails</a>
+</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#FoodTypeList">FoodTypeList</a>
 </font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#HelloWorld">HelloWorld</a>
-</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#Pets">Pets</a>
+</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#MainMenu">MainMenu</a>
+</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#MenuDetails">MenuDetails</a>
+</font></dt><dt><font face="helvetica, arial"><a href="endpoints.html#MenuList">MenuList</a>
 </font></dt></dl>
 </dd>
 </dl>
@@ -32,10 +48,84 @@ The&nbsp;endpoint&nbsp;called&nbsp;`endpoints`&nbsp;will&nbsp;return&nbsp;all&nb
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AddMenu">class <strong>AddMenu</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#AddMenu">AddMenu</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+Add&nbsp;a&nbsp;Menu&nbsp;item<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="endpoints.html#AddMenu">AddMenu</a></dd>
+<dd><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
+
+<dl><dt><a name="AddMenu-post"><strong>post</strong></a>(self)</dt><dd><tt>Add&nbsp;a&nbsp;Menu&nbsp;item</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>endpoint</strong> = 'add_menu'</dl>
+
+<dl><dt><strong>methods</strong> = {'POST'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><a name="AddMenu-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="AddMenu-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
+actual&nbsp;view&nbsp;function&nbsp;code.&nbsp;&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;with&nbsp;all<br>
+the&nbsp;arguments&nbsp;from&nbsp;the&nbsp;URL&nbsp;rule.</tt></dd></dl>
+
+<dl><dt><a name="AddMenu-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="AddMenu-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
+fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
+the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;:meth:`as_view`&nbsp;are&nbsp;forwarded&nbsp;to&nbsp;the<br>
+constructor&nbsp;of&nbsp;the&nbsp;class.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="Endpoints">class <strong>Endpoints</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>This&nbsp;class&nbsp;will&nbsp;serve&nbsp;as&nbsp;live,&nbsp;fetchable&nbsp;documentation&nbsp;of&nbsp;what&nbsp;endpoints<br>
+<td colspan=2><tt><a href="#Endpoints">Endpoints</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+This&nbsp;class&nbsp;will&nbsp;serve&nbsp;as&nbsp;live,&nbsp;fetchable&nbsp;documentation&nbsp;of&nbsp;what&nbsp;endpoints<br>
 are&nbsp;available&nbsp;in&nbsp;the&nbsp;system.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
@@ -47,13 +137,14 @@ are&nbsp;available&nbsp;in&nbsp;the&nbsp;system.<br>&nbsp;</tt></td></tr>
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="Endpoints-get"><strong>get</strong></a>(self)</dt><dd><tt>The&nbsp;`<a href="#Endpoints-get">get</a>()`&nbsp;method&nbsp;will&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;endpoints&nbsp;along&nbsp;with<br>
-documentation&nbsp;on&nbsp;them.</tt></dd></dl>
+<dl><dt><a name="Endpoints-get"><strong>get</strong></a>(self)</dt><dd><tt>The&nbsp;`<a href="#Endpoints-get">get</a>()`&nbsp;method&nbsp;will&nbsp;return&nbsp;a&nbsp;list&nbsp;of&nbsp;available&nbsp;endpoints.</tt></dd></dl>
 
 <dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
 
 <hr>
 Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
 <dl><dt><strong>endpoint</strong> = 'endpoints'</dl>
 
 <dl><dt><strong>methods</strong> = {'GET'}</dl>
@@ -76,7 +167,7 @@ Data and other attributes inherited from <a href="flask_restx.resource.html#Reso
 
 <hr>
 Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
-<dl><dt><a name="Endpoints-as_view"><strong>as_view</strong></a>(name, *class_args, **class_kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+<dl><dt><a name="Endpoints-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
 with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
 fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
 the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
@@ -94,7 +185,151 @@ Data descriptors inherited from <a href="flask.views.html#View">flask.views.View
 </dl>
 <hr>
 Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
-<dl><dt><strong>decorators</strong> = ()</dl>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FoodTypeDetails">class <strong>FoodTypeDetails</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#FoodTypeDetails">FoodTypeDetails</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;return&nbsp;details&nbsp;on&nbsp;a&nbsp;character&nbsp;type.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="endpoints.html#FoodTypeDetails">FoodTypeDetails</a></dd>
+<dd><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FoodTypeDetails-get"><strong>get</strong></a>(self, food_types)</dt><dd><tt>This&nbsp;will&nbsp;return&nbsp;details&nbsp;on&nbsp;a&nbsp;character&nbsp;type.</tt></dd></dl>
+
+<dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>endpoint</strong> = 'food_type_details'</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><a name="FoodTypeDetails-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="FoodTypeDetails-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
+actual&nbsp;view&nbsp;function&nbsp;code.&nbsp;&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;with&nbsp;all<br>
+the&nbsp;arguments&nbsp;from&nbsp;the&nbsp;URL&nbsp;rule.</tt></dd></dl>
+
+<dl><dt><a name="FoodTypeDetails-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="FoodTypeDetails-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
+fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
+the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;:meth:`as_view`&nbsp;are&nbsp;forwarded&nbsp;to&nbsp;the<br>
+constructor&nbsp;of&nbsp;the&nbsp;class.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FoodTypeList">class <strong>FoodTypeList</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#FoodTypeList">FoodTypeList</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;get&nbsp;a&nbsp;list&nbsp;of&nbsp;character&nbsp;types.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="endpoints.html#FoodTypeList">FoodTypeList</a></dd>
+<dd><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FoodTypeList-get"><strong>get</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;character&nbsp;types.</tt></dd></dl>
+
+<dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>endpoint</strong> = 'food_type_list'</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><a name="FoodTypeList-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="FoodTypeList-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
+actual&nbsp;view&nbsp;function&nbsp;code.&nbsp;&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;with&nbsp;all<br>
+the&nbsp;arguments&nbsp;from&nbsp;the&nbsp;URL&nbsp;rule.</tt></dd></dl>
+
+<dl><dt><a name="FoodTypeList-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="FoodTypeList-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
+fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
+the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;:meth:`as_view`&nbsp;are&nbsp;forwarded&nbsp;to&nbsp;the<br>
+constructor&nbsp;of&nbsp;the&nbsp;class.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
 
 <dl><dt><strong>provide_automatic_options</strong> = None</dl>
 
@@ -105,7 +340,9 @@ Data and other attributes inherited from <a href="flask.views.html#View">flask.v
 <font color="#000000" face="helvetica, arial"><a name="HelloWorld">class <strong>HelloWorld</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>The&nbsp;purpose&nbsp;of&nbsp;the&nbsp;<a href="#HelloWorld">HelloWorld</a>&nbsp;class&nbsp;is&nbsp;to&nbsp;have&nbsp;a&nbsp;simple&nbsp;test&nbsp;to&nbsp;see&nbsp;if&nbsp;the<br>
+<td colspan=2><tt><a href="#HelloWorld">HelloWorld</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+The&nbsp;purpose&nbsp;of&nbsp;the&nbsp;<a href="#HelloWorld">HelloWorld</a>&nbsp;class&nbsp;is&nbsp;to&nbsp;have&nbsp;a&nbsp;simple&nbsp;test&nbsp;to&nbsp;see&nbsp;if&nbsp;the<br>
 app&nbsp;is&nbsp;working&nbsp;at&nbsp;all.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
@@ -124,6 +361,8 @@ It&nbsp;just&nbsp;answers&nbsp;with&nbsp;"hello&nbsp;world."</tt></dd></dl>
 
 <hr>
 Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
 <dl><dt><strong>endpoint</strong> = 'hello_world'</dl>
 
 <dl><dt><strong>methods</strong> = {'GET'}</dl>
@@ -146,7 +385,7 @@ Data and other attributes inherited from <a href="flask_restx.resource.html#Reso
 
 <hr>
 Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
-<dl><dt><a name="HelloWorld-as_view"><strong>as_view</strong></a>(name, *class_args, **class_kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+<dl><dt><a name="HelloWorld-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
 with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
 fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
 the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
@@ -164,7 +403,7 @@ Data descriptors inherited from <a href="flask.views.html#View">flask.views.View
 </dl>
 <hr>
 Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
-<dl><dt><strong>decorators</strong> = ()</dl>
+<dl><dt><strong>decorators</strong> = []</dl>
 
 <dl><dt><strong>provide_automatic_options</strong> = None</dl>
 
@@ -172,13 +411,15 @@ Data and other attributes inherited from <a href="flask.views.html#View">flask.v
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#000000" face="helvetica, arial"><a name="Pets">class <strong>Pets</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
+<font color="#000000" face="helvetica, arial"><a name="MainMenu">class <strong>MainMenu</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>This&nbsp;class&nbsp;supports&nbsp;fetching&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;pets.<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt><a href="#MainMenu">MainMenu</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;deliver&nbsp;our&nbsp;main&nbsp;menu.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
-<dd><a href="endpoints.html#Pets">Pets</a></dd>
+<dd><a href="endpoints.html#MainMenu">MainMenu</a></dd>
 <dd><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a></dd>
 <dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
 <dd><a href="flask.views.html#View">flask.views.View</a></dd>
@@ -186,25 +427,27 @@ Data and other attributes inherited from <a href="flask.views.html#View">flask.v
 </dl>
 <hr>
 Methods defined here:<br>
-<dl><dt><a name="Pets-get"><strong>get</strong></a>(self)</dt><dd><tt>This&nbsp;method&nbsp;returns&nbsp;all&nbsp;pets.</tt></dd></dl>
+<dl><dt><a name="MainMenu-get"><strong>get</strong></a>(self)</dt><dd><tt>Gets&nbsp;the&nbsp;main&nbsp;recipe&nbsp;menu.</tt></dd></dl>
 
 <dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
 
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>endpoint</strong> = 'pets'</dl>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>endpoint</strong> = 'main_menu'</dl>
 
 <dl><dt><strong>methods</strong> = {'GET'}</dl>
 
 <hr>
 Methods inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
-<dl><dt><a name="Pets-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+<dl><dt><a name="MainMenu-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
 
-<dl><dt><a name="Pets-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
+<dl><dt><a name="MainMenu-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
 actual&nbsp;view&nbsp;function&nbsp;code.&nbsp;&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;with&nbsp;all<br>
 the&nbsp;arguments&nbsp;from&nbsp;the&nbsp;URL&nbsp;rule.</tt></dd></dl>
 
-<dl><dt><a name="Pets-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
+<dl><dt><a name="MainMenu-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
 
 <hr>
 Data and other attributes inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
@@ -214,7 +457,7 @@ Data and other attributes inherited from <a href="flask_restx.resource.html#Reso
 
 <hr>
 Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
-<dl><dt><a name="Pets-as_view"><strong>as_view</strong></a>(name, *class_args, **class_kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+<dl><dt><a name="MainMenu-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
 with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
 fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
 the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
@@ -232,7 +475,151 @@ Data descriptors inherited from <a href="flask.views.html#View">flask.views.View
 </dl>
 <hr>
 Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
-<dl><dt><strong>decorators</strong> = ()</dl>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MenuDetails">class <strong>MenuDetails</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MenuDetails">MenuDetails</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+this&nbsp;will&nbsp;return&nbsp;details&nbsp;on&nbsp;menu<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="endpoints.html#MenuDetails">MenuDetails</a></dd>
+<dd><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MenuDetails-get"><strong>get</strong></a>(self, menu)</dt><dd><tt>Return&nbsp;a&nbsp;list&nbsp;of&nbsp;menu&nbsp;types</tt></dd></dl>
+
+<dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>endpoint</strong> = 'menu_details'</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><a name="MenuDetails-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="MenuDetails-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
+actual&nbsp;view&nbsp;function&nbsp;code.&nbsp;&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;with&nbsp;all<br>
+the&nbsp;arguments&nbsp;from&nbsp;the&nbsp;URL&nbsp;rule.</tt></dd></dl>
+
+<dl><dt><a name="MenuDetails-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="MenuDetails-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
+fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
+the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;:meth:`as_view`&nbsp;are&nbsp;forwarded&nbsp;to&nbsp;the<br>
+constructor&nbsp;of&nbsp;the&nbsp;class.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
+
+<dl><dt><strong>provide_automatic_options</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MenuList">class <strong>MenuList</strong></a>(<a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MenuList">MenuList</a>(api=None,&nbsp;*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+This&nbsp;will&nbsp;get&nbsp;a&nbsp;list&nbsp;of&nbsp;current&nbsp;menu<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="endpoints.html#MenuList">MenuList</a></dd>
+<dd><a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a></dd>
+<dd><a href="flask.views.html#MethodView">flask.views.MethodView</a></dd>
+<dd><a href="flask.views.html#View">flask.views.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MenuList-get"><strong>get</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;current&nbsp;menus</tt></dd></dl>
+
+<dl><dt><strong>mediatypes</strong> <em>lambda</em> resource_cls</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+<dl><dt><strong>endpoint</strong> = 'menu_list'</dl>
+
+<dl><dt><strong>methods</strong> = {'GET'}</dl>
+
+<hr>
+Methods inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><a name="MenuList-__init__"><strong>__init__</strong></a>(self, api=None, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="MenuList-dispatch_request"><strong>dispatch_request</strong></a>(self, *args, **kwargs)</dt><dd><tt>Subclasses&nbsp;have&nbsp;to&nbsp;override&nbsp;this&nbsp;method&nbsp;to&nbsp;implement&nbsp;the<br>
+actual&nbsp;view&nbsp;function&nbsp;code.&nbsp;&nbsp;This&nbsp;method&nbsp;is&nbsp;called&nbsp;with&nbsp;all<br>
+the&nbsp;arguments&nbsp;from&nbsp;the&nbsp;URL&nbsp;rule.</tt></dd></dl>
+
+<dl><dt><a name="MenuList-validate_payload"><strong>validate_payload</strong></a>(self, func)</dt><dd><tt>Perform&nbsp;a&nbsp;payload&nbsp;validation&nbsp;on&nbsp;expected&nbsp;model&nbsp;if&nbsp;necessary</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="flask_restx.resource.html#Resource">flask_restx.resource.Resource</a>:<br>
+<dl><dt><strong>method_decorators</strong> = []</dl>
+
+<dl><dt><strong>representations</strong> = None</dl>
+
+<hr>
+Class methods inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><a name="MenuList-as_view"><strong>as_view</strong></a>(name: str, *class_args: Any, **class_kwargs: Any) -&gt; Callable<font color="#909090"><font face="helvetica, arial"> from <a href="flask.views.html#MethodViewType">flask.views.MethodViewType</a></font></font></dt><dd><tt>Converts&nbsp;the&nbsp;class&nbsp;into&nbsp;an&nbsp;actual&nbsp;view&nbsp;function&nbsp;that&nbsp;can&nbsp;be&nbsp;used<br>
+with&nbsp;the&nbsp;routing&nbsp;system.&nbsp;&nbsp;Internally&nbsp;this&nbsp;generates&nbsp;a&nbsp;function&nbsp;on&nbsp;the<br>
+fly&nbsp;which&nbsp;will&nbsp;instantiate&nbsp;the&nbsp;:class:`View`&nbsp;on&nbsp;each&nbsp;request&nbsp;and&nbsp;call<br>
+the&nbsp;:meth:`dispatch_request`&nbsp;method&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+The&nbsp;arguments&nbsp;passed&nbsp;to&nbsp;:meth:`as_view`&nbsp;are&nbsp;forwarded&nbsp;to&nbsp;the<br>
+constructor&nbsp;of&nbsp;the&nbsp;class.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="flask.views.html#View">flask.views.View</a>:<br>
+<dl><dt><strong>decorators</strong> = []</dl>
 
 <dl><dt><strong>provide_automatic_options</strong> = None</dl>
 
@@ -243,6 +630,24 @@ Data and other attributes inherited from <a href="flask.views.html#View">flask.v
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>api</strong> = &lt;flask_restx.api.Api object&gt;<br>
-<strong>app</strong> = &lt;Flask 'endpoints'&gt;</td></tr></table>
+<td width="100%"><strong>ADD</strong> = 'add'<br>
+<strong>DETAILS</strong> = 'details'<br>
+<strong>FOOD_TYPES_NS</strong> = 'food_types'<br>
+<strong>FOOD_TYPE_DETAILS</strong> = '/food_types/details'<br>
+<strong>FOOD_TYPE_LIST</strong> = '/food_types/list'<br>
+<strong>FOOD_TYPE_LIST_NM</strong> = '{FOOD_TYPES_NS}_list'<br>
+<strong>HELLO</strong> = '/hello'<br>
+<strong>LIST</strong> = 'list'<br>
+<strong>MAIN_MENU</strong> = '/main_menu'<br>
+<strong>MAIN_MENU_NM</strong> = 'Main Menu'<br>
+<strong>MENU_ADD</strong> = '/food_menu/add'<br>
+<strong>MENU_DETAILS</strong> = '/food_menu/details'<br>
+<strong>MENU_LIST</strong> = '/food_menu/list'<br>
+<strong>MENU_LIST_NM</strong> = '{MENU_NS}_list'<br>
+<strong>MENU_NS</strong> = 'food_menu'<br>
+<strong>MESSAGE</strong> = 'message'<br>
+<strong>api</strong> = &lt;flask_restx.api.Api object&gt;<br>
+<strong>app</strong> = &lt;Flask 'endpoints'&gt;<br>
+<strong>menu_fields</strong> = {'Name': &lt;class 'flask_restx.fields.String'&gt;, 'M...onutrients': &lt;class 'flask_restx.fields.String'&gt;}<br>
+<strong>request</strong> = &lt;LocalProxy unbound&gt;</td></tr></table>
 </body></html>
