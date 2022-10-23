@@ -31,6 +31,11 @@ def test_add_missing_field():
         fm.add_food('a new menu item', {'foo':'bar'})
 
 
+def test_get_food_by_ingredient():
+    fm_result = fm.get_food_by_ingredient(fm.TEST_MENU)
+    assert isinstance(fm_result, list)
+
+
 def test_add_menu():
     details = {}
     for field in fm.REQUIRED_FLDS:

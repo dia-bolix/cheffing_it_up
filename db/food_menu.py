@@ -74,6 +74,18 @@ def add_food(name, details):
     food[name] = details
 
 
+def get_food_by_ingredient(ingredient):
+    """
+    Given a name of an ingredient, returns a list of names with all the menu
+    items that include that ingredient.
+    """
+    result = []
+    for i in food:
+        if ingredient in food[i][INGREDIENTS]:
+            result.append(food[i][NAME])
+    return result
+
+
 def main():
     food = get_food()
     print(f'{food=}')
