@@ -90,7 +90,6 @@ def main():
     food = get_food()
     print(f'{food=}')
     print(f'{get_food_details(TEST_MENU)=}')
-    print(get_food_details("Apple Pie"))
 
 
 if __name__ == '__main__':

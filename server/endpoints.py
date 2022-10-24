@@ -20,6 +20,7 @@ DETAILS = 'details'
 HELLO = '/hello'
 MESSAGE = 'message'
 ADD = 'add'
+FIND = 'find'
 MAIN_MENU = '/main_menu'
 MAIN_MENU_NM = 'Main Menu'
 
@@ -33,6 +34,7 @@ MENU_LIST = f'/{MENU_NS}/{LIST}'
 MENU_LIST_NM = '{MENU_NS}_list'
 MENU_DETAILS = f'/{MENU_NS}/{DETAILS}'
 MENU_ADD = f'/{MENU_NS}/{ADD}'
+MENU_FIND = f'/{MENU_NS}/{FIND}'
 
 
 @api.route(HELLO)
@@ -145,6 +147,24 @@ class AddMenu(Resource):
         name = request.json[fm.NAME]
         del request.json[fm.NAME]
         fm.add_food(name, request.json)
+
+
+@api.route(MENU_FIND)
+class FindMenu(Resource):
+    """
+    Find a menu from given ingredient
+    """
+    @api.expect(fields.String)
+    def post(self):
+        """
+        Find menu item rom ingredident
+        """
+        print(f'{request.json=}')
+        mt = fm.get_food_by_ingredient(request.json)
+        if mt is not None:
+            return {"Dish": fm.get_food_by_ingredient(request.json)}
+        else:
+            raise wz.NotFound(f'{request.json} not found')
 
 
 @api.route('/endpoints')
