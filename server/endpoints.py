@@ -145,8 +145,8 @@ class AddMenu(Resource):
         """
         print(f'{request.json=}')
         name = request.json[fm.NAME]
-        del request.json[fm.NAME]
         fm.add_food(name, request.json)
+        del request.json[fm.NAME]
 
 
 @api.route(MENU_FIND)
