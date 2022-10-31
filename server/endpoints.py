@@ -29,12 +29,12 @@ FOOD_TYPE_LIST = f'/{FOOD_TYPES_NS}/{LIST}'
 FOOD_TYPE_LIST_NM = f'{FOOD_TYPES_NS}_list'
 FOOD_TYPE_DETAILS = f'/{FOOD_TYPES_NS}/{DETAILS}'
 
-MENU_NS = 'food_menu'
-MENU_LIST = f'/{MENU_NS}/{LIST}'
-MENU_LIST_NM = f'{MENU_NS}_list'
-MENU_DETAILS = f'/{MENU_NS}/{DETAILS}'
-MENU_ADD = f'/{MENU_NS}/{ADD}'
-MENU_FIND = f'/{MENU_NS}/{FIND}'
+FOOD_MENU_NS = 'food_menu'
+FOOD_MENU_LIST = f'/{FOOD_MENU_NS}/{LIST}'
+FOOD_MENU_LIST_NM = f'{FOOD_MENU_NS}_list'
+FOOD_MENU_DETAILS = f'/{FOOD_MENU_NS}/{DETAILS}'
+FOOD_MENU_ADD = f'/{FOOD_MENU_NS}/{ADD}'
+FOOD_MENU_FIND = f'/{FOOD_MENU_NS}/{FIND}'
 
 
 @api.route(HELLO)
@@ -93,7 +93,7 @@ class FoodTypeDetails(Resource):
             raise wz.NotFound(f'{food_types} not found.')
 
 
-@api.route(MENU_LIST)
+@api.route(FOOD_MENU_LIST)
 class MenuList(Resource):
     """
     This will get a list of current menu
@@ -102,25 +102,25 @@ class MenuList(Resource):
         """
         Returns a list of current menus
         """
-        return {MENU_LIST_NM: fm.get_food()}
+        return {FOOD_MENU_LIST_NM: fm.get_food()}
 
 
-@api.route(f'{MENU_DETAILS}/<food_types>')
+@api.route(f'{FOOD_MENU_DETAILS}/<food_types>')
 class MenuDetails(Resource):
     """
     this will return details on menu
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
-    def get(self, menu):
+    def get(self, food_menu):
         """
         Return a list of menu types
         """
-        mt = fm.get_food_details(menu)
+        mt = fm.get_food_details(food_menu)
         if mt is not None:
-            return {menu: fm.get_food_details(menu)}
+            return {food_menu: fm.get_food_details(food_menu)}
         else:
-            raise wz.NotFound(f'{menu} not found.')
+            raise wz.NotFound(f'{food_menu} not found.')
 
 
 menu_fields = api.model('NewMenu', {
@@ -133,7 +133,7 @@ menu_fields = api.model('NewMenu', {
 })
 
 
-@api.route(MENU_ADD)
+@api.route(FOOD_MENU_ADD)
 class AddMenu(Resource):
     """
     Add a Menu item
@@ -149,7 +149,7 @@ class AddMenu(Resource):
         del request.json[fm.NAME]
 
 
-@api.route(MENU_FIND)
+@api.route(FOOD_MENU_FIND)
 class FindMenu(Resource):
     """
     Find a menu from given ingredient
