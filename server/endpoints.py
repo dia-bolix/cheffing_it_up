@@ -5,17 +5,26 @@ The endpoint called `endpoints` will return all available endpoints.
 from http import HTTPStatus
 
 from flask import Flask, request
-from flask_restx import Resource, Api, fields
+from flask_restx import Resource, Api, fields, Namespace
 import werkzeug.exceptions as wz
 # import db.db as db
 
 import db.food_types as ftyp
 import db.food_menu as fm
+import db.users as usr
 
 app = Flask(__name__)
 api = Api(app)
 
+FOOD_MENU_NS = 'food_menu'
+USERS_NS = 'users'
+
+FOOD_TYPES_NS = 'food_types'
+users = Namespace(USERS_NS, 'Users')
+api.add_namespace(users)
+
 LIST = 'list'
+DICT = 'dict'
 DETAILS = 'details'
 HELLO = '/hello'
 MESSAGE = 'message'
@@ -23,18 +32,26 @@ ADD = 'add'
 FIND = 'find'
 MAIN_MENU = '/main_menu'
 MAIN_MENU_NM = 'Main Menu'
+USERS_NS = 'users'
 
-FOOD_TYPES_NS = 'food_types'
 FOOD_TYPE_LIST = f'/{FOOD_TYPES_NS}/{LIST}'
 FOOD_TYPE_LIST_NM = f'{FOOD_TYPES_NS}_list'
 FOOD_TYPE_DETAILS = f'/{FOOD_TYPES_NS}/{DETAILS}'
 
-FOOD_MENU_NS = 'food_menu'
 FOOD_MENU_LIST = f'/{FOOD_MENU_NS}/{LIST}'
 FOOD_MENU_LIST_NM = f'{FOOD_MENU_NS}_list'
 FOOD_MENU_DETAILS = f'/{FOOD_MENU_NS}/{DETAILS}'
 FOOD_MENU_ADD = f'/{FOOD_MENU_NS}/{ADD}'
 FOOD_MENU_FIND = f'/{FOOD_MENU_NS}/{FIND}'
+
+USER_DICT = f'/{DICT}'
+USER_DICT_W_NS = f'{USERS_NS}/{DICT}'
+USER_DICT_NM = f'{USERS_NS}_dict'
+USER_LIST = f'/{LIST}'
+USER_LIST_W_NS = f'{USERS_NS}/{LIST}'
+USER_LIST_NM = f'{USERS_NS}_list'
+USER_DETAILS = f'/{USERS_NS}/{DETAILS}'
+USER_ADD = f'/{USERS_NS}/{ADD}'
 
 
 @api.route(HELLO)
@@ -165,6 +182,55 @@ class FindMenu(Resource):
             return {"Dish": fm.get_food_by_ingredient(request.json)}
         else:
             raise wz.NotFound(f'{request.json} not found')
+
+
+@users.route(USER_DICT)
+class UserDict(Resource):
+    """
+    This will get a list of currrent users.
+    """
+    def get(self):
+        """
+        Returns a list of current users.
+        """
+        return {'Data': usr.get_users_dict(),
+                'Type': 'Data',
+                'Title': 'Active Users'}
+
+
+@users.route(USER_LIST)
+class UserList(Resource):
+    """
+    This will get a list of currrent users.
+    """
+    def get(self):
+        """
+        Returns a list of current users.
+        """
+        return {USER_LIST_NM: usr.get_users()}
+
+
+user_fields = api.model('NewUser', {
+    usr.NAME: fields.String,
+    usr.EMAIL: fields.String,
+    usr.FULL_NAME: fields.String,
+})
+
+
+@api.route(USER_ADD)
+class AddUser(Resource):
+    """
+    Add a user.
+    """
+    @api.expect(user_fields)
+    def post(self):
+        """
+        Add a user.
+        """
+        print(f'{request.json=}')
+        name = request.json[usr.NAME]
+        del request.json[usr.NAME]
+        usr.add_user(name, request.json)
 
 
 @api.route('/endpoints')
