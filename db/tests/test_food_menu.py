@@ -36,6 +36,11 @@ def test_get_food_by_ingredient():
     assert isinstance(fm_result, list)
 
 
+def test_get_food_by_time_of_day():
+    result = fm.get_food_by_time_of_day(fm.TEST_MENU)
+    assert isinstance(result, list)
+
+
 def test_add_menu():
     details = {}
     for field in fm.REQUIRED_FLDS:

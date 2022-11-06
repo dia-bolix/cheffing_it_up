@@ -88,10 +88,23 @@ def get_food_by_ingredient(ingredient):
     return result
 
 
+def get_food_by_time_of_day(time_of_day):
+    """
+    Given the type of meal (breakfast, lunch, dinner), return a list of names
+    for all of the meals served during that time of day.
+    """
+    result = []
+    for i in FOOD_MENU:
+        if time_of_day in FOOD_MENU[i][MEAL_OF_DAY]:
+            result.append(FOOD_MENU[i][NAME])
+    return result
+
+
 def main():
     food = get_food()
     print(f'{food=}')
     print(f'{get_food_details(TEST_MENU)=}')
+    print(get_food_by_time_of_day("Dessert"))
 
 
 if __name__ == '__main__':
