@@ -25,7 +25,7 @@ def get_food_types_details(food_type):
     Returns details pertaining to a specific food type. As of now this is the
     time of day a meal type is served.
     """
-    return FOOD_TYPES.get(food_type, None)
+    return FOOD_TYPES.get(food_type.lower(), None)
 
 
 def main():

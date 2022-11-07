@@ -3,16 +3,16 @@ This module encapsulates the details of the menu
 """
 
 
-TEST_MENU = 'Test Menu'
+TEST_MENU = 'test menu'
 
-NAME = 'Name'
-MEAL_OF_DAY = 'Meal of Day'
-INGREDIENTS = 'Ingredients'
-CALORIES = 'Calories'
+NAME = 'name'
+MEAL_OF_DAY = 'meal of Day'
+INGREDIENTS = 'ingredients'
+CALORIES = 'calories'
 MACRONUTRIENTS = 'Macronutrients'
 MICRONUTRIENTS = 'Micronutrients'
-APIE = "Apple Pie"
-PPIE = "Pumkin Pie"
+APIE = "apple Pie"
+PPIE = "pumpkin Pie"
 
 REQUIRED_FLDS = [NAME, MEAL_OF_DAY, INGREDIENTS,
                  CALORIES, MACRONUTRIENTS, MICRONUTRIENTS]
@@ -58,7 +58,7 @@ def get_food_details(name):
     """
     Given the name of a food, returns a dictonary with the nutritional details.
     """
-    return FOOD_MENU.get(name, None)
+    return FOOD_MENU.get(name.lower(), None)
 
 
 def add_food(name, details):
@@ -73,7 +73,7 @@ def add_food(name, details):
     for field in REQUIRED_FLDS:
         if field not in details:
             raise ValueError(f'Requried {field=} missing from details')
-    FOOD_MENU[name] = details
+    FOOD_MENU[name.lower()] = details
 
 
 def get_food_by_ingredient(ingredient):
