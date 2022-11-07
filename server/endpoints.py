@@ -122,7 +122,7 @@ class MenuList(Resource):
         return {FOOD_MENU_LIST_NM: fm.get_food()}
 
 
-@api.route(f'{FOOD_MENU_DETAILS}/<food_types>')
+@api.route(f'{FOOD_MENU_DETAILS}/<food_menu>')
 class MenuDetails(Resource):
     """
     this will return details on menu

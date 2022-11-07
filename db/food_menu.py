@@ -11,8 +11,8 @@ INGREDIENTS = 'ingredients'
 CALORIES = 'calories'
 MACRONUTRIENTS = 'Macronutrients'
 MICRONUTRIENTS = 'Micronutrients'
-APIE = "apple Pie"
-PPIE = "pumpkin Pie"
+APIE = "apple pie"
+PPIE = "pumpkin pie"
 
 REQUIRED_FLDS = [NAME, MEAL_OF_DAY, INGREDIENTS,
                  CALORIES, MACRONUTRIENTS, MICRONUTRIENTS]
