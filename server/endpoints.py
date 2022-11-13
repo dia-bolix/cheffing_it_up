@@ -22,6 +22,11 @@ USERS_NS = 'users'
 FOOD_TYPES_NS = 'food_types'
 users = Namespace(USERS_NS, 'Users')
 api.add_namespace(users)
+food_types = Namespace(FOOD_TYPES_NS, 'Food_Types')
+api.add_namespace(food_types)
+food_menu = Namespace(FOOD_MENU_NS, 'Food_Menu')
+api.add_namespace(food_menu)
+
 
 LIST = 'list'
 DICT = 'dict'
@@ -34,11 +39,13 @@ MAIN_MENU = '/main_menu'
 MAIN_MENU_NM = 'Main Menu'
 USERS_NS = 'users'
 
-FOOD_TYPE_LIST = f'/{FOOD_TYPES_NS}/{LIST}'
+FOOD_TYPE_LIST = f'/{LIST}'
+FOOD_TYPE_LIST_W_NS = f'{FOOD_TYPES_NS}/{LIST}'
 FOOD_TYPE_LIST_NM = f'{FOOD_TYPES_NS}_list'
 FOOD_TYPE_DETAILS = f'/{FOOD_TYPES_NS}/{DETAILS}'
 
-FOOD_MENU_LIST = f'/{FOOD_MENU_NS}/{LIST}'
+FOOD_MENU_LIST = f'/{LIST}'
+FOOD_MENU_LIST_W_NS = f'{FOOD_MENU_NS}/{LIST}'
 FOOD_MENU_LIST_NM = f'{FOOD_MENU_NS}_list'
 FOOD_MENU_DETAILS = f'/{FOOD_MENU_NS}/{DETAILS}'
 FOOD_MENU_ADD = f'/{FOOD_MENU_NS}/{ADD}'
@@ -48,6 +55,7 @@ USER_DICT = f'/{DICT}'
 USER_DICT_W_NS = f'{USERS_NS}/{DICT}'
 USER_DICT_NM = f'{USERS_NS}_dict'
 USER_LIST = f'/{LIST}'
+
 USER_LIST_W_NS = f'{USERS_NS}/{LIST}'
 USER_LIST_NM = f'{USERS_NS}_list'
 USER_DETAILS = f'/{USERS_NS}/{DETAILS}'
@@ -80,7 +88,7 @@ class MainMenu(Resource):
         return {MAIN_MENU_NM: {'the': 'menu'}}
 
 
-@api.route(FOOD_TYPE_LIST)
+@food_types.route(FOOD_TYPE_LIST)
 class FoodTypeList(Resource):
     """
     This will get a list of character types.
@@ -92,7 +100,7 @@ class FoodTypeList(Resource):
         return {FOOD_TYPE_LIST_NM: ftyp.get_food_types()}
 
 
-@api.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
+@food_types.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
 class FoodTypeDetails(Resource):
     """
     This will return details on a character type.
@@ -110,7 +118,7 @@ class FoodTypeDetails(Resource):
             raise wz.NotFound(f'{food_types} not found.')
 
 
-@api.route(FOOD_MENU_LIST)
+@food_menu.route(FOOD_MENU_LIST)
 class MenuList(Resource):
     """
     This will get a list of current menu
@@ -122,7 +130,7 @@ class MenuList(Resource):
         return {FOOD_MENU_LIST_NM: fm.get_food()}
 
 
-@api.route(f'{FOOD_MENU_DETAILS}/<food_menu>')
+@food_menu.route(f'{FOOD_MENU_DETAILS}/<food_menu>')
 class MenuDetails(Resource):
     """
     this will return details on menu
@@ -150,7 +158,7 @@ menu_fields = api.model('NewMenu', {
 })
 
 
-@api.route(FOOD_MENU_ADD)
+@food_menu.route(FOOD_MENU_ADD)
 class AddMenu(Resource):
     """
     Add a Menu item
@@ -166,7 +174,7 @@ class AddMenu(Resource):
         del request.json[fm.NAME]
 
 
-@api.route(FOOD_MENU_FIND)
+@food_menu.route(FOOD_MENU_FIND)
 class FindMenu(Resource):
     """
     Find a menu from given ingredient
@@ -217,7 +225,7 @@ user_fields = api.model('NewUser', {
 })
 
 
-@api.route(USER_ADD)
+@users.route(USER_ADD)
 class AddUser(Resource):
     """
     Add a user.
@@ -233,7 +241,7 @@ class AddUser(Resource):
         usr.add_user(name, request.json)
 
 
-@api.route('/endpoints')
+@users.route('/endpoints')
 class Endpoints(Resource):
     """
     This class will serve as live, fetchable documentation of what endpoints
