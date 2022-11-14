@@ -18,8 +18,8 @@ api = Api(app)
 
 FOOD_MENU_NS = 'food_menu'
 USERS_NS = 'users'
-
 FOOD_TYPES_NS = 'food_types'
+
 users = Namespace(USERS_NS, 'Users')
 api.add_namespace(users)
 food_types = Namespace(FOOD_TYPES_NS, 'Food_Types')
@@ -40,11 +40,17 @@ MAIN_MENU_NM = 'Main Menu'
 USERS_NS = 'users'
 
 FOOD_TYPE_LIST = f'/{LIST}'
+FOOD_TYPE_DICT = f'/{DICT}'
+FOOD_TYPE_DICT_W_NS = f'{FOOD_TYPES_NS}/{DICT}'
+FOOD_TYPE_DICT_NM = f'{FOOD_TYPES_NS}_dict'
 FOOD_TYPE_LIST_W_NS = f'{FOOD_TYPES_NS}/{LIST}'
 FOOD_TYPE_LIST_NM = f'{FOOD_TYPES_NS}_list'
 FOOD_TYPE_DETAILS = f'/{DETAILS}'
 
 FOOD_MENU_LIST = f'/{LIST}'
+FOOD_MENU_DICT = f'/{DICT}'
+FOOD_MENU_DICT_W_NS = f'{FOOD_MENU_NS}/{DICT}'
+FOOD_MENU_DICT_NM = f'{FOOD_MENU_NS}_dict'
 FOOD_MENU_LIST_W_NS = f'{FOOD_MENU_NS}/{LIST}'
 FOOD_MENU_LIST_NM = f'{FOOD_MENU_NS}_list'
 FOOD_MENU_DETAILS = f'/{DETAILS}'
@@ -83,9 +89,19 @@ class MainMenu(Resource):
     """
     def get(self):
         """
-        Gets the main recipe menu.
+        Gets the main game menu.
         """
-        return {MAIN_MENU_NM: {'the': 'menu'}}
+        return {'Title': MAIN_MENU_NM,
+                'Default': 2,
+                'Choices': {
+                    '1': {'url': f'/{FOOD_TYPE_DICT_W_NS}', 'method': 'get',
+                          'text': 'List Character Types'},
+                    '2': {'url': f'/{FOOD_MENU_DICT_W_NS}',
+                          'method': 'get', 'text': 'List Active Games'},
+                    '3': {'url': f'/{USER_DICT_W_NS}',
+                          'method': 'get', 'text': 'List Users'},
+                    'X': {'text': 'Exit'},
+                }}
 
 
 @food_types.route(FOOD_TYPE_LIST)
