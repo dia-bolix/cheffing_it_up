@@ -54,6 +54,13 @@ def get_food():
     return list(FOOD_MENU.keys())
 
 
+def get_food_dict():
+    """
+    Returns a dictonarys of all the current names of food available.
+    """
+    return FOOD_MENU
+
+
 def get_food_details(name):
     """
     Given the name of a food, returns a dictonary with the nutritional details.

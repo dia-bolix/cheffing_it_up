@@ -116,6 +116,34 @@ class FoodTypeList(Resource):
         return {FOOD_TYPE_LIST_NM: ftyp.get_food_types()}
 
 
+@food_types.route(FOOD_TYPE_DICT)
+class FoodTypeDict(Resource):
+    """
+    This will get a dict of current food types
+    """
+    def get(self):
+        """
+        Returns a dict of current food types
+        """
+        return {'Data': ftyp.get_food_types_dict(),
+                'Type': 'Data',
+                'Title': 'Dictonary of the food menu'}
+
+
+@food_menu.route(FOOD_TYPE_DICT)
+class MenuList(Resource):
+    """
+    This will get a dict of current menu
+    """
+    def get(self):
+        """
+        Returns a dict of current menus
+        """
+        return {'Data': fm.get_food_dict(),
+                'Type': 'Data',
+                'Title': 'Dictonary of the food menu'}
+
+
 @food_types.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
 class FoodTypeDetails(Resource):
     """
@@ -132,18 +160,6 @@ class FoodTypeDetails(Resource):
             return {food_types: ftyp.get_food_types_details(food_types)}
         else:
             raise wz.NotFound(f'{food_types} not found.')
-
-
-@food_menu.route(FOOD_MENU_LIST)
-class MenuList(Resource):
-    """
-    This will get a list of current menu
-    """
-    def get(self):
-        """
-        Returns a list of current menus
-        """
-        return {FOOD_MENU_LIST_NM: fm.get_food()}
 
 
 @food_menu.route(f'{FOOD_MENU_DETAILS}/<food_menu>')

@@ -20,6 +20,14 @@ def get_food_types():
     return list(FOOD_TYPES.keys())
 
 
+def get_food_types_dict():
+    """
+    This fuction returns the types of food available as a dictonary. As of
+    now this includes breakfast, lunch, and dinner.
+    """
+    return FOOD_TYPES
+
+
 def get_food_types_details(food_type):
     """
     Returns details pertaining to a specific food type. As of now this is the
