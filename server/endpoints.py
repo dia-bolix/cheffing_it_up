@@ -95,9 +95,9 @@ class MainMenu(Resource):
                 'Default': 2,
                 'Choices': {
                     '1': {'url': f'/{FOOD_TYPE_DICT_W_NS}', 'method': 'get',
-                          'text': 'List Character Types'},
+                          'text': 'List Food Types'},
                     '2': {'url': f'/{FOOD_MENU_DICT_W_NS}',
-                          'method': 'get', 'text': 'List Active Games'},
+                          'method': 'get', 'text': 'List Menu'},
                     '3': {'url': f'/{USER_DICT_W_NS}',
                           'method': 'get', 'text': 'List Users'},
                     'X': {'text': 'Exit'},
