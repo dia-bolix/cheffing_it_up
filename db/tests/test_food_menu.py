@@ -11,6 +11,12 @@ def test_get_menu():
     assert len(fms) > 1
 
 
+def test_get_menu_dict():
+    fmd = fm.get_food_dict()
+    assert isinstance(fmd, dict)
+    assert len(fmd) > 1
+
+
 def test_get_menu_details():
     fm_details = fm.get_food_details(fm.TEST_MENU)
     assert isinstance(fm_details, dict)
