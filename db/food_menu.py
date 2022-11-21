@@ -15,9 +15,6 @@ MICRONUTRIENTS = 'Micronutrients'
 APIE = "apple pie"
 PPIE = "pumpkin pie"
 
-MENU_KEY = 'name'
-MENU_COLLECT = 'FOOD_MENU'
-
 REQUIRED_FLDS = [NAME, MEAL_OF_DAY, INGREDIENTS,
                  CALORIES, MACRONUTRIENTS, MICRONUTRIENTS]
 FOOD_MENU = {TEST_MENU: {NAME: 'CAKE',
@@ -42,6 +39,9 @@ FOOD_MENU = {TEST_MENU: {NAME: 'CAKE',
                     MICRONUTRIENTS: """Vitamin A: 91%, Calcium: 6.5%,
                                         Iron: 6.7%"""},
              }
+
+MENU_KEY = 'name'
+MENU_COLLECT = 'FOOD_MENU'
 
 
 def menu_exists(name):

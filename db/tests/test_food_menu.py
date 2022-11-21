@@ -9,23 +9,49 @@ import os
 RUNNING_ON_CICD_SERVER = os.environ.get('CI', False)
 
 
-def test_get_menu():
-    if not RUNNING_ON_CICD_SERVER:
-        fms = fm.get_food()
-        assert isinstance(fms, list)
-        assert len(fms) > 1
+def create_menu_details():
+    details = {}
+    for field in fm.REQUIRED_FLDS:
+        details[field] = 2
+    return details
 
 
-def test_get_menu_dict():
+@pytest.fixture(scope='function')
+def temp_menu():
     if not RUNNING_ON_CICD_SERVER:
-        fmd = fm.get_food_dict()
-        assert isinstance(fmd[fm.TEST_MENU], dict)
-        assert len(fmd[fm.TEST_MENU]) > 1
+        fm.add_game(fm.TEST_GAME_NAME, create_menu_details())
+        yield
+        return True
+        # fm.del_game(gm.TEST_GAME_NAME)
+    else:
+        yield
+        return True
+
+
+# def test_get_menu():
+#     if not RUNNING_ON_CICD_SERVER:
+#         fms = fm.get_food()
+#         assert isinstance(fms, list)
+#         assert len(fms) > 1
+
+
+# def test_get_menu_dict():
+#     if not RUNNING_ON_CICD_SERVER:
+#         fmd = fm.get_food_dict()
+#         assert isinstance(fmd[fm.TEST_MENU], dict)
+#         assert len(fmd[fm.TEST_MENU]) > 1
+
+# def test_get_games_dict():
+#     if not RUNNING_ON_CICD_SERVER:
+#         fms = fm.get_games_dict()
+#         assert isinstance(fms, dict)
+#         assert len(fms) > 1
 
 
 def test_get_menu_details():
-    fm_details = fm.get_food_details(fm.TEST_MENU)
-    assert isinstance(fm_details, dict)
+    if not RUNNING_ON_CICD_SERVER:
+        fm_details = fm.get_food_details(fm.TEST_MENU)
+        assert isinstance(fm_details, dict)
 
 
 def test_add_wrong_name_type():
@@ -53,10 +79,15 @@ def test_get_food_by_time_of_day():
     assert isinstance(result, list)
 
 
-def test_add_menu():
-    if not RUNNING_ON_CICD_SERVER:
-        details = {}
-        for field in fm.REQUIRED_FLDS:
-            details[field] = 2
-        fm.add_food(fm.TEST_MENU, details)
-        #assert fm.menu_exists(fm.TEST_MENU)
+# def test_add_menu():
+#     if not RUNNING_ON_CICD_SERVER:
+#         details = {}
+#         for field in fm.REQUIRED_FLDS:
+#             details[field] = 2
+#         fm.add_food(fm.TEST_MENU, details)
+#         assert fm.menu_exists(fm.TEST_MENU)
+
+
+# def test_add_game():
+#     if not RUNNING_ON_CICD_SERVER:
+#         fm.add_food(fm.TEST_MENU, create_menu_details())

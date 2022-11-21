@@ -35,6 +35,14 @@ def fetch_all(collection, db=MENU_DB):
     return ret
 
 
+def fetch_one(collection, filt, db=MENU_DB):
+    """
+    Find with a filter and return on the first doc found.
+    """
+    for doc in client[db][collection].find(filt):
+        return doc
+
+
 def fetch_all_as_dict(key, collection, db=MENU_DB):
     ret = {}
     for doc in client[db][collection].find():
