@@ -40,6 +40,7 @@ FOOD_MENU = {TEST_MENU: {NAME: 'CAKE',
                                         Iron: 6.7%"""},
              }
 
+
 MENU_KEY = 'name'
 MENU_COLLECT = 'FOOD_MENU'
 
@@ -70,11 +71,20 @@ def get_food_dict():
     # return FOOD_MENU
 
 
+# def get_food_details(name):
+#     """
+#     Given the name of a food, returns a dictonary with
+#     the nutritional details.
+#     """
+#     return FOOD_MENU.get(name.lower(), None)
+
+
 def get_food_details(name):
     """
     Given the name of a food, returns a dictonary with the nutritional details.
     """
-    return FOOD_MENU.get(name.lower(), None)
+    dbc.connect_db()
+    return dbc.fetch_one(MENU_COLLECT, {MENU_KEY: name})
 
 
 def add_food(name, details):

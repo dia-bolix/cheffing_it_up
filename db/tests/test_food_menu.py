@@ -48,10 +48,10 @@ def temp_menu():
 #         assert len(fms) > 1
 
 
-def test_get_menu_details():
-    if not RUNNING_ON_CICD_SERVER:
-        fm_details = fm.get_food_details(fm.TEST_MENU)
-        assert isinstance(fm_details, dict)
+# def test_get_menu_details():
+#     if not RUNNING_ON_CICD_SERVER:
+#         fm_details = fm.get_food_details(fm.TEST_MENU)
+#         assert isinstance(fm_details, dict)
 
 
 def test_add_wrong_name_type():
