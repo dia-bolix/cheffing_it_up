@@ -2,6 +2,7 @@
 This module encapsulates the details of the menu
 """
 
+import db.db_connect as dbc
 
 TEST_MENU = 'test menu'
 
@@ -13,6 +14,9 @@ MACRONUTRIENTS = 'Macronutrients'
 MICRONUTRIENTS = 'Micronutrients'
 APIE = "apple pie"
 PPIE = "pumpkin pie"
+
+MENU_KEY = 'name'
+MENU_COLLECT = 'FOOD_MENU'
 
 REQUIRED_FLDS = [NAME, MEAL_OF_DAY, INGREDIENTS,
                  CALORIES, MACRONUTRIENTS, MICRONUTRIENTS]
@@ -51,14 +55,19 @@ def get_food():
     """
     Returns a list of all the current names of food available.
     """
-    return list(FOOD_MENU.keys())
+    dbc.connect_db()
+    return dbc.fetch_all(MENU_COLLECT)
+    # return list(FOOD_MENU.keys())
 
 
 def get_food_dict():
+
     """
     Returns a dictonarys of all the current names of food available.
     """
-    return FOOD_MENU
+    dbc.connect_db()
+    return dbc.fetch_all_as_dict(MENU_KEY, MENU_COLLECT)
+    # return FOOD_MENU
 
 
 def get_food_details(name):
@@ -73,6 +82,7 @@ def add_food(name, details):
     Given the name of a food and a dictonary with it's nutritional values,
     will check if it's a vaild entry then add to the list of foods.
     """
+    doc = details
     if not isinstance(name, str):
         raise TypeError(f'Wrong type for name: {type(name)=}')
     if not isinstance(details, dict):
@@ -80,7 +90,12 @@ def add_food(name, details):
     for field in REQUIRED_FLDS:
         if field not in details:
             raise ValueError(f'Requried {field=} missing from details')
+
     FOOD_MENU[name.lower()] = details
+
+    dbc.connect_db()
+    doc[MENU_KEY] = name
+    return dbc.insert_one(MENU_COLLECT, doc)
 
 
 def get_food_by_ingredient(ingredient):
