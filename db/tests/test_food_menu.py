@@ -6,6 +6,8 @@ import db.food_menu as fm
 
 import os
 
+from unittest import skip
+
 RUNNING_ON_CICD_SERVER = os.environ.get('CI', False)
 
 
@@ -91,3 +93,7 @@ def test_get_food_by_time_of_day():
 # def test_add_game():
 #     if not RUNNING_ON_CICD_SERVER:
 #         fm.add_food(fm.TEST_MENU, create_menu_details())
+
+@skip("adding a skip test")
+def skip_test():
+    return
