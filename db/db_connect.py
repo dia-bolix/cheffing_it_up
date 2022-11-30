@@ -56,3 +56,10 @@ def insert_one(collection, doc, db=MENU_DB):
     Insert a single doc into collection.
     """
     client[db][collection].insert_one(doc)
+
+
+def del_one(collection, filt, db=MENU_DB):
+    """
+    Find with a filter and return on the first doc found.
+    """
+    client[db][collection].delete_one(filt)
