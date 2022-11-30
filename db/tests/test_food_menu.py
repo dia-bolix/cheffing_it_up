@@ -22,7 +22,7 @@ def create_menu_details():
 @pytest.fixture(scope='function')
 def temp_menu():
     if not RUNNING_ON_CICD_SERVER:
-        fm.add_game(fm.TEST_GAME_NAME, create_menu_details())
+        fm.add_food("test", {})
         yield
         return True
         # fm.del_game(gm.TEST_GAME_NAME)
@@ -82,9 +82,13 @@ def test_get_food_by_time_of_day():
     assert isinstance(result, list)
 
 
-def test_del_game(new_menu):
+@pytest.fixture(scope='function')
+def new_menu():
+    return fm.add_food(TEST_DEL_NAME, create_menu_details())
+
+def test_del_menu(new_menu):
     fm.del_menu(TEST_DEL_NAME)
-    assert not fm.game_exists(TEST_DEL_NAME)
+    assert not fm.menu_exists(TEST_DEL_NAME)
 
 # def test_add_menu():
 #     if not RUNNING_ON_CICD_SERVER:
