@@ -10,6 +10,7 @@ from unittest import skip
 
 RUNNING_ON_CICD_SERVER = os.environ.get('CI', False)
 
+TEST_DEL_NAME = 'Menu to be deleted'
 
 def create_menu_details():
     details = {}
@@ -80,6 +81,10 @@ def test_get_food_by_time_of_day():
     result = fm.get_food_by_time_of_day(fm.TEST_MENU)
     assert isinstance(result, list)
 
+
+def test_del_game(new_menu):
+    fm.del_menu(TEST_DEL_NAME)
+    assert not fm.game_exists(TEST_DEL_NAME)
 
 # def test_add_menu():
 #     if not RUNNING_ON_CICD_SERVER:
