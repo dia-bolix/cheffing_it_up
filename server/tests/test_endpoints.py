@@ -3,8 +3,17 @@ import pytest
 
 import server.endpoints as ep
 
+import db.users as usr
+
 TEST_CLIENT = ep.app.test_client()
 TEST_FOOD_TYPE = 'Breakfast'
+
+SAMPLE_USER_NM = 'SampleUser'
+SAMPLE_USER = {
+    usr.NAME: SAMPLE_USER_NM,
+    usr.EMAIL: 'x@y.com',
+    usr.FULL_NAME: 'Sample User',
+}
 
 def test_hello():
     """
@@ -43,3 +52,23 @@ def test_get_food_type_list_not_empty():
 #     assert TEST_FOOD_TYPE in resp_json
 #     assert isinstance(resp_json[TEST_FOOD_TYPE], dict)
 
+
+def test_add_user():
+    """
+    Test adding a user.
+    """
+    resp = TEST_CLIENT.post(ep.USER_ADD, json=SAMPLE_USER)
+    print(usr.users)
+    assert usr.user_exists(SAMPLE_USER_NM)
+    usr.del_user(SAMPLE_USER_NM)
+
+
+def test_get_user_list():
+    """
+    See if we can get a user list properly.
+    Return should look like:
+        {USER_LIST_NM: [list of users types...]}
+    """
+    resp = TEST_CLIENT.get(ep.USER_LIST_W_NS)
+    resp_json = resp.get_json()
+    assert isinstance(resp_json[ep.USER_LIST_NM], list)

@@ -257,7 +257,7 @@ user_fields = api.model('NewUser', {
 })
 
 
-@users.route(USER_ADD)
+@api.route(USER_ADD)
 class AddUser(Resource):
     """
     Add a user.

@@ -45,6 +45,10 @@ def add_user(name, details):
     users[name] = details
 
 
+def del_user(name):
+    del users[name]
+
+
 def main():
     users = get_users()
     print(f'{users=}')
