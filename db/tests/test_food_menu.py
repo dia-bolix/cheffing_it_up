@@ -30,16 +30,20 @@ def temp_menu():
         yield
         return True
 
+# TO BE ADDED
+# def test_get_menu(temp_menu):
+#     fms = fm.get_food()
+#     assert isinstance(fms, list)
+#     assert len(fms) > 0
 
-def test_get_menu(temp_menu):
-    fms = fm.get_food()
-    assert isinstance(fms, list)
-    assert len(fms) > 0
+# def test_get_menu_dict(temp_menu):
+#     fms = fm.get_food_dict()
+#     assert isinstance(fms, dict)
+#     assert len(fms) > 0
 
-def test_get_menu_dict(temp_menu):
-    fms = fm.get_food_dict()
-    assert isinstance(fms, dict)
-    assert len(fms) > 0
+# def test_get_game_details(temp_menu):
+#     fm_dtls = fm.get_food_details(fm.TEST_DEL_NAME)
+#     assert isinstance(fm_dtls, dict)
 
 # def test_get_menu():
 #     if not RUNNING_ON_CICD_SERVER:
@@ -48,6 +52,8 @@ def test_get_menu_dict(temp_menu):
 #         assert len(fms) > 1
 
 
+
+# REMOVED AFTER TOP GETS IMPLEMENTED
 # def test_get_menu_dict():
 #     if not RUNNING_ON_CICD_SERVER:
 #         fmd = fm.get_food_dict()
