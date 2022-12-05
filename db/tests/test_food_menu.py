@@ -120,9 +120,9 @@ def test_del_menu(new_menu):
 #         fm.add_food(fm.TEST_MENU, create_menu_details())
 
 def test_add_menu():
-    fm.add_food(fm.TEST_DEL_NAME, create_menu_details())
-    assert fm.menu_exists(fm.TEST_DEL_NAME)
-    fm.del_menu(fm.TEST_DEL_NAME)
+    fm.add_food(fm.TEST_MENU, create_menu_details())
+    assert fm.menu_exists(fm.TEST_MENU)
+    fm.del_menu(fm.TEST_MENU)
 
 @skip("adding a skip test")
 def skip_test():
