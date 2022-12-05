@@ -31,6 +31,16 @@ def temp_menu():
         return True
 
 
+def test_get_menu(temp_menu):
+    fms = fm.get_games()
+    assert isinstance(fms, list)
+    assert len(fms) > 0
+
+def test_get_menu_dict(temp_menu):
+    fms = fm.get_games_dict()
+    assert isinstance(fms, dict)
+    assert len(fms) > 0
+    
 # def test_get_menu():
 #     if not RUNNING_ON_CICD_SERVER:
 #         fms = fm.get_food()
