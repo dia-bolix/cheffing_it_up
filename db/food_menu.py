@@ -134,7 +134,7 @@ def get_food_by_time_of_day(time_of_day):
 
 def del_menu(name):
     """
-    Given the name of a menu, delte that menu from the database.
+    Given the name of a menu, delete that menu from the database.
     """
     return dbc.del_one(MENU_COLLECT, {MENU_KEY: name})
 

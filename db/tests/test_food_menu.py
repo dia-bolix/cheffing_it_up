@@ -49,7 +49,7 @@ def temp_menu():
 #     if not RUNNING_ON_CICD_SERVER:
 #         fms = fm.get_food()
 #         assert isinstance(fms, list)
-#         assert len(fms) > 1
+#         assert len(fms) > 0
 
 
 
@@ -118,6 +118,11 @@ def test_del_menu(new_menu):
 # def test_add_game():
 #     if not RUNNING_ON_CICD_SERVER:
 #         fm.add_food(fm.TEST_MENU, create_menu_details())
+
+def test_add_menu():
+    fm.add_food(fm.TEST_DEL_NAME, create_menu_details())
+    assert fm.menu_exists(fm.TEST_DEL_NAME)
+    fm.del_menu(fm.TEST_DEL_NAME)
 
 @skip("adding a skip test")
 def skip_test():
