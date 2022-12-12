@@ -15,7 +15,7 @@ on:
 env:
   DEMO_HOME: /home/runner/work/cheffing_it_up/cheffing_it_up/
   PYTHONPATH: /home/runner/work/cheffing_it_up/cheffing_it_up/
-    # MONGO_PASSWD: ${{secrets.MONGO_PASSWD}}
+  MENU_MONGO_PW: ${{secrets.MENU_MONGO_PW}}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
