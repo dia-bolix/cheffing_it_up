@@ -89,7 +89,7 @@ class MainMenu(Resource):
     """
     def get(self):
         """
-        Gets the main game menu.
+        Gets the main food menu.
         """
         return {'Title': MAIN_MENU_NM,
                 'Default': 2,
@@ -107,11 +107,11 @@ class MainMenu(Resource):
 @food_types.route(FOOD_TYPE_LIST)
 class FoodTypeList(Resource):
     """
-    This will get a list of character types.
+    This will get a dict of current food types.
     """
     def get(self):
         """
-        Returns a list of character types.
+        Returns a dict of current food types.
         """
         return {FOOD_TYPE_LIST_NM: ftyp.get_food_types()}
 
@@ -133,11 +133,11 @@ class FoodTypeDict(Resource):
 @food_menu.route(FOOD_TYPE_DICT)
 class MenuList(Resource):
     """
-    This will get a dict of current menu
+    This will get a dict all the items currently in the menu
     """
     def get(self):
         """
-        Returns a dict of current menus
+        Returns a dict all the items currently in the menu
         """
         return {'Data': fm.get_food_dict(),
                 'Type': 'Data',
@@ -147,13 +147,15 @@ class MenuList(Resource):
 @food_types.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
 class FoodTypeDetails(Resource):
     """
-    This will return details on a character type.
+    This will return details about the types of food
+    (breakfast, lunch, dinner)
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def get(self, food_types):
         """
-        This will return details on a character type.
+        This will return details about the types of food
+        (breakfast, lunch, dinner).
         """
         ct = ftyp.get_food_types_details(food_types)
         if ct is not None:
@@ -209,12 +211,12 @@ class AddMenu(Resource):
 @food_menu.route(FOOD_MENU_FIND)
 class FindMenu(Resource):
     """
-    Find a menu from given ingredient
+    Returns a list of names of food items with given ingredient
     """
     @api.expect(fields.String)
     def post(self):
         """
-        Find menu item rom ingredident
+        Returns a list of names of food items with given ingredient
         """
         print(f'{request.json=}')
         mt = fm.get_food_by_ingredient(request.json)
@@ -273,7 +275,7 @@ class AddUser(Resource):
         usr.add_user(name, request.json)
 
 
-@users.route('/endpoints')
+@api.route('/endpoints')
 class Endpoints(Resource):
     """
     This class will serve as live, fetchable documentation of what endpoints
