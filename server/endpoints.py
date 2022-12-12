@@ -107,11 +107,11 @@ class MainMenu(Resource):
 @food_types.route(FOOD_TYPE_LIST)
 class FoodTypeList(Resource):
     """
-    This will get a dict of current food types.
+    This will get a list of current food types.
     """
     def get(self):
         """
-        Returns a dict of current food types.
+        Returns a list of current food types.
         """
         return {FOOD_TYPE_LIST_NM: ftyp.get_food_types()}
 
@@ -167,13 +167,13 @@ class FoodTypeDetails(Resource):
 @food_menu.route(f'{FOOD_MENU_DETAILS}/<food_menu>')
 class MenuDetails(Resource):
     """
-    this will return details on menu
+    This will return details on a menu item given its name
     """
     @api.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
     def get(self, food_menu):
         """
-        Return a list of menu types
+        This will return details on a menu item given its name
         """
         mt = fm.get_food_details(food_menu)
         if mt is not None:
