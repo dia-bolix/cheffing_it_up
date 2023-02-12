@@ -221,7 +221,8 @@ class FindMenu(Resource):
         # print(f'{request.json=}')
         mt = fm.get_food_by_ingredient(ingredient)
         if mt is not None:
-            return {"Dishes with " + ingredient: fm.get_food_by_ingredient(ingredient)}
+            return {"Dishes with " + ingredient:
+                    fm.get_food_by_ingredient(ingredient)}
         else:
             raise wz.NotFound(f'{request.json} not found')
 
