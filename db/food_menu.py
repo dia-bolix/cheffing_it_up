@@ -113,10 +113,11 @@ def get_food_by_ingredient(ingredient):
     Given a name of an ingredient, returns a list of names with all the menu
     items that include that ingredient.
     """
+    fd = get_food_dict()
     result = []
-    for i in FOOD_MENU:
-        if ingredient in FOOD_MENU[i][INGREDIENTS]:
-            result.append(FOOD_MENU[i][NAME])
+    for i in fd:
+        if ingredient in fd[i][INGREDIENTS]:
+            result.append(fd[i][NAME])
     return result
 
 
@@ -141,9 +142,10 @@ def del_menu(name):
 
 def main():
     food = get_food()
-    print(f'{food=}')
-    print(f'{get_food_details(TEST_MENU)=}')
-    print(get_food_by_time_of_day("Dessert"))
+    # print(f'{food=}')
+    # print(f'{get_food_details(TEST_MENU)=}')
+    # print(get_food_by_time_of_day("Dessert"))
+    print(get_food_by_ingredient("cheese"))
 
 
 if __name__ == '__main__':

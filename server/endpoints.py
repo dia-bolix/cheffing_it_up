@@ -208,20 +208,20 @@ class AddMenu(Resource):
         del request.json[fm.NAME]
 
 
-@food_menu.route(FOOD_MENU_FIND)
+@food_menu.route(f'{FOOD_MENU_FIND}/<ingredient>')
 class FindMenu(Resource):
     """
     Returns a list of names of food items with given ingredient
     """
     @api.expect(fields.String)
-    def post(self):
+    def get(self, ingredient):
         """
         Returns a list of names of food items with given ingredient
         """
-        print(f'{request.json=}')
-        mt = fm.get_food_by_ingredient(request.json)
+        # print(f'{request.json=}')
+        mt = fm.get_food_by_ingredient(ingredient)
         if mt is not None:
-            return {"Dish": fm.get_food_by_ingredient(request.json)}
+            return {"Dishes with " + ingredient: fm.get_food_by_ingredient(ingredient)}
         else:
             raise wz.NotFound(f'{request.json} not found')
 
