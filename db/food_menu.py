@@ -142,9 +142,9 @@ def del_menu(name):
 
 def main():
     food = get_food()
-    # print(f'{food=}')
-    # print(f'{get_food_details(TEST_MENU)=}')
-    # print(get_food_by_time_of_day("Dessert"))
+    print(f'{food=}')
+    print(f'{get_food_details(TEST_MENU)=}')
+    print(get_food_by_time_of_day("Dessert"))
     print(get_food_by_ingredient("cheese"))
 
 
