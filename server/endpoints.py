@@ -82,14 +82,17 @@ class HelloWorld(Resource):
         """
         return {MESSAGE: 'hello world'}
 
+
 @app.route('/git_update', methods=['POST'])
 def webhook():
     repo = git.Repo('/cheffing_it_up')
     origin = repo.remotes.origin
-    repo.create_head('main', 
-    origin.refs.main).set_tracking_branch(origin.refs.main).checkout()
+    repo.create_head('main',
+                     origin.refs.main).set_tracking_branch(
+                     origin.refs.main).checkout()
     origin.pull()
     return '', 200
+
 
 @api.route(MAIN_MENU)
 class MainMenu(Resource):
