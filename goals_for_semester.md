@@ -22,6 +22,13 @@
 - Deploy your application to the hosting platform.
 - Test the deployed application to ensure that it is working correctly.
 
+4. User interface
+- Set up a front-end project using a tool such as Create React App.
+- Create components for the various parts of the user interface, such as the header, recipe list, and recipe detail page.
+- Use React to manage the state of the components and update the UI in response to changes in the data.
+- Use CSS or a CSS-in-JS library such as styled-components to style the components.
+- Test the user interface to ensure that it is working correctly and is user-friendly.
+
 # Further goals 
 
 1. Implementing logging:
