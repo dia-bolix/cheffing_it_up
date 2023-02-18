@@ -49,5 +49,5 @@ jobs:
       - name: Deploy to PythonAnywhere
         run: ./deploy.sh
         env:
-          DEMO_PA_PWD: ${{secrets.CIU_PA_PWD}}
+          CIU_PA_PWD: ${{secrets.CIU_PA_PWD}}
 
