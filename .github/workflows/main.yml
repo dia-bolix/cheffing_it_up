@@ -23,7 +23,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # environment: heroku-deploy
+    environment: pa_deploy
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -45,3 +45,9 @@ jobs:
       #        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
       #        heroku_app_name: "demo-repo3"
       #        heroku_email: "ejc369@nyu.edu"
+
+      - name: Deploy to PythonAnywhere
+        run: ./deploy.sh
+        env:
+          DEMO_PA_PWD: ${{secrets.CIU_PA_PWD}}
+

@@ -12,7 +12,6 @@ import werkzeug.exceptions as wz
 import db.food_types as ftyp
 import db.food_menu as fm
 import db.users as usr
-import git
 
 app = Flask(__name__)
 api = Api(app)
@@ -81,18 +80,6 @@ class HelloWorld(Resource):
         It just answers with "hello world."
         """
         return {MESSAGE: 'hello world'}
-
-
-@app.route('/git_update', methods=['POST'])
-def webhook():
-    if request.method == 'POST':
-        repo = git.Repo('/home/alstonS/cheffing_it_up')
-        origin = repo.remotes.origin
-        repo.create_head('main',
-                         origin.refs.main).set_tracking_branch(
-                         origin.refs.main).checkout()
-    origin.pull()
-    return '', 200
 
 
 @api.route(MAIN_MENU)
