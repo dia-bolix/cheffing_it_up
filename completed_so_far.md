@@ -22,3 +22,6 @@
 ## Other
 - Added namespacing
 - Implemented HATEOS (list all recipes, list all users, list all food types)
+
+## CI/CD
+- Deploying to pythonanywhere automatically
