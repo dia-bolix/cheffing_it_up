@@ -113,6 +113,8 @@ def get_food_by_ingredient(ingredient):
     Given a name of an ingredient, returns a list of names with all the menu
     items that include that ingredient.
     """
+    if not isinstance(ingredient, list):
+        raise ValueError("The argument must be a list of ingredients.")
     fd = get_food_dict()
     result = []
     for i in fd:

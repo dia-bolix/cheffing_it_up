@@ -30,12 +30,19 @@ def temp_menu():
         yield
         return True
 
-# TO BE ADDED
+#TO BE ADDED
 # def test_get_menu(temp_menu):
 #     fms = fm.get_food()
 #     assert isinstance(fms, list)
 #     assert len(fms) > 0
 
+def test_get_menu():
+    if not RUNNING_ON_CICD_SERVER:
+        fms = fm.get_food()
+        assert isinstance(fms, list)
+        assert len(fms) > 0
+
+        
 # def test_get_menu_dict(temp_menu):
 #     fms = fm.get_food_dict()
 #     assert isinstance(fms, dict)
@@ -44,12 +51,6 @@ def temp_menu():
 # def test_get_game_details(temp_menu):
 #     fm_dtls = fm.get_food_details(fm.TEST_DEL_NAME)
 #     assert isinstance(fm_dtls, dict)
-
-# def test_get_menu():
-#     if not RUNNING_ON_CICD_SERVER:
-#         fms = fm.get_food()
-#         assert isinstance(fms, list)
-#         assert len(fms) > 0
 
 
 
@@ -89,8 +90,18 @@ def test_add_missing_field():
 
 
 def test_get_food_by_ingredient():
-    fm_result = fm.get_food_by_ingredient(fm.TEST_MENU)
-    assert isinstance(fm_result, list)
+    if not RUNNING_ON_CICD_SERVER:
+        # Add food with ingredients
+        details = create_menu_details()
+        details['ingredients'] = ['tomato', 'cheese', 'bread']
+        fm.add_food("test", details)
+
+        # Get food by ingredient
+        fms = fm.get_food_by_ingredient(['cheese'])
+
+        # Check that we got the right food
+        assert len(fms) == 1
+        assert fms[0]['name'] == 'test'
 
 
 def test_get_food_by_time_of_day():
