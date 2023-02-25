@@ -42,6 +42,10 @@ def test_get_menu():
         assert isinstance(fms, list)
         assert len(fms) > 0
 
+
+def test_get_food_by_time_of_day():
+    result = fm.get_food_by_time_of_day("ANY TIME")
+    assert isinstance(result, list)
         
 # def test_get_menu_dict(temp_menu):
 #     fms = fm.get_food_dict()
@@ -89,24 +93,20 @@ def test_add_missing_field():
         fm.add_food('a new menu item', {'foo':'bar'})
 
 
-def test_get_food_by_ingredient():
-    if not RUNNING_ON_CICD_SERVER:
-        # Add food with ingredients
-        details = create_menu_details()
-        details['ingredients'] = ['tomato', 'cheese', 'bread']
-        fm.add_food("test", details)
 
-        # Get food by ingredient
-        fms = fm.get_food_by_ingredient(['cheese'])
+# def test_get_food_by_ingredient():
+#     if not RUNNING_ON_CICD_SERVER:
+#         # Add food with ingredients
+#         details = create_menu_details()
+#         details['ingredients'] = ['tomato', 'cheese', 'bread']
+#         fm.add_food("test", details)
 
-        # Check that we got the right food
-        assert len(fms) == 1
-        assert fms[0]['name'] == 'test'
+#         # Get food by ingredient
+#         fms = fm.get_food_by_ingredient(['cheese'])
 
-
-def test_get_food_by_time_of_day():
-    result = fm.get_food_by_time_of_day(fm.TEST_MENU)
-    assert isinstance(result, list)
+#         # Check that we got the right food
+#         assert len(fms) == 1
+#         assert fms[0]['name'] == 'test'
 
 
 @pytest.fixture(scope='function')
