@@ -31,3 +31,15 @@ def test_fetch_one(temp_rec):
 def test_fetch_one_not_there(temp_rec):
     ret = dbc.fetch_one(TEST_COLLECT, {TEST_NAME: 'not a field value in db!'})
     assert ret is None
+
+
+def test_fetch_all(temp_rec):
+    ret = dbc.fetch_all(TEST_COLLECT)
+    assert isinstance(ret, list)
+    assert len(ret) >= 1
+
+
+def test_fetch_all_as_dict(temp_rec):
+    ret = dbc.fetch_all_as_dict(TEST_NAME, TEST_COLLECT)
+    assert isinstance(ret, dict)
+    assert len(ret) >= 1
