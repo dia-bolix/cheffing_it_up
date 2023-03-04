@@ -12,6 +12,7 @@ RUNNING_ON_CICD_SERVER = os.environ.get('CI', False)
 
 TEST_DEL_NAME = 'Menu to be deleted'
 
+
 def create_menu_details():
     details = {}
     for field in fm.REQUIRED_FLDS:
@@ -21,20 +22,24 @@ def create_menu_details():
 
 @pytest.fixture(scope='function')
 def temp_menu():
-    if not RUNNING_ON_CICD_SERVER:
-        fm.add_food("test", {})
-        yield
-        return True
-        # fm.del_game(gm.TEST_GAME_NAME)
-    else:
-        yield
-        return True
+    # if not RUNNING_ON_CICD_SERVER:
+    #     fm.add_food("test", {})
+    #     yield
+    #     return True
+    #     # fm.del_game(gm.TEST_GAME_NAME)
+    # else:
+    #     yield
+    #     return True
+    fm.add_food(fm.TEST_MENU, create_menu_details())
+    yield
+    fm.del_menu(fm.TEST_MENU)
 
-#TO BE ADDED
+# TO BE ADDED
 # def test_get_menu(temp_menu):
 #     fms = fm.get_food()
 #     assert isinstance(fms, list)
 #     assert len(fms) > 0
+
 
 def test_get_menu():
     if not RUNNING_ON_CICD_SERVER:
@@ -46,16 +51,12 @@ def test_get_menu():
 def test_get_food_by_time_of_day():
     result = fm.get_food_by_time_of_day("ANY TIME")
     assert isinstance(result, list)
-        
-# def test_get_menu_dict(temp_menu):
-#     fms = fm.get_food_dict()
-#     assert isinstance(fms, dict)
-#     assert len(fms) > 0
 
-# def test_get_game_details(temp_menu):
-#     fm_dtls = fm.get_food_details(fm.TEST_DEL_NAME)
-#     assert isinstance(fm_dtls, dict)
 
+def test_get_menu_dict():
+    fms = fm.get_food_dict()
+    assert isinstance(fms, dict)
+    assert len(fms) > 0
 
 
 # REMOVED AFTER TOP GETS IMPLEMENTED
@@ -72,10 +73,9 @@ def test_get_food_by_time_of_day():
 #         assert len(fms) > 1
 
 
-# def test_get_menu_details():
-#     if not RUNNING_ON_CICD_SERVER:
-#         fm_details = fm.get_food_details(fm.TEST_MENU)
-#         assert isinstance(fm_details, dict)
+def test_get_menu_details(temp_menu):
+    fm_details = fm.get_food_details(fm.TEST_MENU)
+    assert isinstance(fm_details, dict)
 
 
 def test_add_wrong_name_type():
@@ -90,8 +90,7 @@ def test_add_wrong_details_type():
 
 def test_add_missing_field():
     with pytest.raises(ValueError):
-        fm.add_food('a new menu item', {'foo':'bar'})
-
+        fm.add_food('a new menu item', {'foo': 'bar'})
 
 
 # def test_get_food_by_ingredient():
@@ -112,6 +111,7 @@ def test_add_missing_field():
 @pytest.fixture(scope='function')
 def new_menu():
     return fm.add_food(TEST_DEL_NAME, create_menu_details())
+
 
 def test_del_menu(new_menu):
     fm.del_menu(TEST_DEL_NAME)
@@ -134,6 +134,7 @@ def test_add_menu():
     fm.add_food(fm.TEST_MENU, create_menu_details())
     assert fm.menu_exists(fm.TEST_MENU)
     fm.del_menu(fm.TEST_MENU)
+
 
 @skip("adding a skip test")
 def skip_test():

@@ -62,7 +62,6 @@ def get_food():
 
 
 def get_food_dict():
-
     """
     Returns a dictonarys of all the current names of food available.
     """
@@ -145,9 +144,9 @@ def del_menu(name):
 def main():
     food = get_food()
     print(f'{food=}')
-    print(f'{get_food_details(TEST_MENU)=}')
-    print(get_food_by_time_of_day("Dessert"))
-    print(get_food_by_ingredient("cheese"))
+    #     print(f'{get_food_details(TEST_MENU)=}')
+    #     print(get_food_by_time_of_day("Dessert"))
+    #     print(get_food_by_ingredient("cheese"))
 
 
 if __name__ == '__main__':
