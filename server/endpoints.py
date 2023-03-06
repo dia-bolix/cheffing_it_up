@@ -7,7 +7,10 @@ from http import HTTPStatus
 from flask import Flask, request
 from flask_restx import Resource, Api, fields, Namespace
 import werkzeug.exceptions as wz
+from flask_cors import CORS
+
 # import db.db as db
+
 
 import db.food_types as ftyp
 import db.food_menu as fm
@@ -15,6 +18,8 @@ import db.users as usr
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app)
+cors = CORS(app, origins="http://localhost:3000")
 
 FOOD_MENU_NS = 'food_menu'
 USERS_NS = 'users'
@@ -289,3 +294,13 @@ class Endpoints(Resource):
         endpoints = ''
         # sorted(rule.rule for rule in api.app.url_map.iter_rules())
         return {"Available endpoints": endpoints}
+
+
+# Add the Access-Control-Allow-Origin header to the responses
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', "http://localhost:3000")
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+

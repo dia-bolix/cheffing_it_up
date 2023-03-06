@@ -5,3 +5,4 @@ pymongo
 python-dotenv
 gitpython
 pytest-cov
+Flask-Cors
