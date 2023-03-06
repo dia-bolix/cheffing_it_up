@@ -7,7 +7,7 @@ from http import HTTPStatus
 from flask import Flask, request
 from flask_restx import Resource, Api, fields, Namespace
 import werkzeug.exceptions as wz
-from flask_cors import CORS
+# from flask_cors import CORS
 
 # import db.db as db
 
@@ -18,7 +18,7 @@ import db.users as usr
 
 app = Flask(__name__)
 api = Api(app)
-CORS(app)
+# CORS(app)
 # cors = CORS(app)
 # cors = CORS(app, origins="http://localhost:3000")
 
