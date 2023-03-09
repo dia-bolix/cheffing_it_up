@@ -11,6 +11,9 @@ git pull origin master
 echo "Activating virtual environment"
 source ~/.virtualenvs/my-virtualenv/bin/activate
 
+echo "CD into directory"
+cd ~/cheffing_it_up
+
 echo "Installing packages"
 pip install -r requirements.txt
 
