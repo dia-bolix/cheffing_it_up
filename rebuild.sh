@@ -8,6 +8,9 @@ echo "Rebuilding"
 echo "Pulling code from master"
 git pull origin master
 
+echo "Activating virtual environment"
+source ~/.virtualenvs/my-virtualenv/bin
+
 echo "Installing packages"
 pip install -r requirements.txt
 
