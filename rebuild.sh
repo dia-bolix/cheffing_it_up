@@ -9,7 +9,7 @@ echo "Pulling code from master"
 git pull origin master
 
 echo "Activating virtual environment"
-source ~/.virtualenvs/my-virtualenv/bin
+source ~/.virtualenvs/my-virtualenv/bin/activate
 
 echo "Installing packages"
 pip install -r requirements.txt
