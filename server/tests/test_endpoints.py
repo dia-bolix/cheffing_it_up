@@ -6,7 +6,7 @@ import server.endpoints as ep
 import db.users as usr
 
 TEST_CLIENT = ep.app.test_client()
-TEST_FOOD_TYPE = 'Breakfast'
+TEST_FOOD_TYPE = 'breakfast'
 
 SAMPLE_USER_NM = 'SampleUser'
 SAMPLE_USER = {
@@ -51,6 +51,19 @@ def test_get_food_type_list_not_empty():
 #     resp_json = TEST_CLIENT.get(f'{ep.FOOD_TYPE_DETAILS}/{TEST_FOOD_TYPE}').get_json()
 #     assert TEST_FOOD_TYPE in resp_json
 #     assert isinstance(resp_json[TEST_FOOD_TYPE], dict)
+    
+
+# def test_get_food_type_details():
+#     """
+#     testing testing
+#     """
+#     resp = TEST_CLIENT.get(f'{ep.FOOD_TYPE_DETAILS}/{TEST_FOOD_TYPE}')
+#     resp_json = resp.get_json()
+#     if resp_json is not None:
+#         assert TEST_FOOD_TYPE in resp_json
+#         assert isinstance(resp_json[TEST_FOOD_TYPE], dict)
+#     else:
+#         assert False, 'Response is None'
 
 
 def test_add_user():
