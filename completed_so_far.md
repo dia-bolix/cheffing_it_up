@@ -24,4 +24,5 @@
 - Implemented HATEOS (list all recipes, list all users, list all food types)
 
 ## CI/CD
-- Deploying to pythonanywhere automatically
+- Deploying the [backend](https://alstons.pythonanywhere.com/) to pythonanywhere automatically
+- Deploying the [frontend](https://cheffing-it-up-front.herokuapp.com/) and [backend](https://cheffing-it-up.herokuapp.com/) to heroku automatically
