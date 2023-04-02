@@ -18,7 +18,7 @@ import db.users as usr
 
 app = Flask(__name__)
 api = Api(app)
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+cors = CORS(app)
 
 
 FOOD_MENU_NS = 'food_menu'
@@ -79,6 +79,7 @@ class HelloWorld(Resource):
     The purpose of the HelloWorld class is to have a simple test to see if the
     app is working at all.
     """
+
     def get(self):
         """
         A trivial endpoint to see if the server is running.
@@ -92,6 +93,7 @@ class MainMenu(Resource):
     """
     This will deliver our main menu.
     """
+
     def get(self):
         """
         Gets the main food menu.
@@ -114,6 +116,7 @@ class FoodTypeList(Resource):
     """
     This will get a list of current food types.
     """
+
     def get(self):
         """
         Returns a list of current food types.
@@ -126,6 +129,7 @@ class FoodTypeDict(Resource):
     """
     This will get a dict of current food types
     """
+
     def get(self):
         """
         Returns a dict of current food types
@@ -140,6 +144,7 @@ class MenuList(Resource):
     """
     This will get a dict all the items currently in the menu
     """
+
     def get(self):
         """
         Returns a dict all the items currently in the menu
@@ -237,6 +242,7 @@ class UserDict(Resource):
     """
     This will get a list of currrent users.
     """
+
     def get(self):
         """
         Returns a list of current users.
@@ -251,6 +257,7 @@ class UserList(Resource):
     """
     This will get a list of currrent users.
     """
+
     def get(self):
         """
         Returns a list of current users.
@@ -287,6 +294,7 @@ class Endpoints(Resource):
     This class will serve as live, fetchable documentation of what endpoints
     are available in the system.
     """
+
     def get(self):
         """
         The `get()` method will return a list of available endpoints.
