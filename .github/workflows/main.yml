@@ -46,8 +46,8 @@ jobs:
           heroku_app_name: "cheffing-it-up"
           heroku_email: "ra2629@nyu.edu"
 
-      - name: Deploy to PythonAnywhere
-        run: ./deploy.sh
-        env:
-          CIU_PA_PWD: ${{secrets.CIU_PA_PWD}}
+      # - name: Deploy to PythonAnywhere
+      #   run: ./deploy.sh
+      #   env:
+      #     CIU_PA_PWD: ${{secrets.CIU_PA_PWD}}
 
