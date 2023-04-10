@@ -4,11 +4,14 @@ import pytest
 import server.endpoints as ep
 
 import db.users as usr
-from unittest.mock import patch
+import db.food_menu as fm
+import db.food_types as ft
+
+#from unittest.mock import patch
 
 TEST_CLIENT = ep.app.test_client()
 TEST_FOOD_TYPE = 'breakfast'
-SAMPLE_FOOD_TYPE_LIST = ["breakfast", "lunch", "dinner"]
+#SAMPLE_FOOD_TYPE_LIST = ["breakfast", "lunch", "dinner"]
 
 
 SAMPLE_USER_NM = 'SampleUser'
@@ -27,12 +30,21 @@ def test_hello():
     assert isinstance(resp_json[ep.MESSAGE], str)
 
 
-@patch("db.users.get_food_type_list", return_value=SAMPLE_FOOD_TYPE_LIST)
-def test_get_food_type_list(mock_get_food_type_list):
+
+# @patch("db.users.get_food_type_list", return_value=SAMPLE_FOOD_TYPE_LIST)
+# def test_get_food_type_list(mock_get_food_type_list):
+#     """
+#     See if we can get a food type list properly.
+#     Return should look like:
+#         {FOOD_TYPE_LIST_NM: [list of food types...]}
+#     """
+#     resp_json = 
+
+def test_get_food_type_list():
     """
-    See if we can get a food type list properly.
+    See if we can get a charcter type list properly.
     Return should look like:
-        {FOOD_TYPE_LIST_NM: [list of food types...]}
+        {CHAR_TYPE_LIST_NM: [list of chars types...]}
     """
     resp_json = TEST_CLIENT.get(ep.FOOD_TYPE_LIST_W_NS).get_json()
     assert isinstance(resp_json[ep.FOOD_TYPE_LIST_NM], list)
