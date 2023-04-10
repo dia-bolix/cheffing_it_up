@@ -141,6 +141,44 @@ def del_menu(name):
     return dbc.del_one(MENU_COLLECT, {MENU_KEY: name})
 
 
+def get_food_by_calories_range(min_calories, max_calories):
+    """
+    Given a range of calories (min_calories and max_calories), returns a list
+    of names with all the menu items that fall within that range.
+    """
+    menu_items = dbc.fetch_all(MENU_COLLECT)
+    return [item[NAME] for item in menu_items
+            if min_calories <= item[CALORIES] <= max_calories]
+
+
+def get_food_by_meal_of_day(meal_of_day):
+    """
+    Given the type of meal (breakfast, lunch, dinner), return a list of names
+    for all of the meals served during that time of day.
+    """
+    menu_items = dbc.fetch_all(MENU_COLLECT)
+    return [item[NAME] for item in menu_items
+            if item[MEAL_OF_DAY].lower() == meal_of_day.lower()]
+
+
+def update_food_details(name, updates):
+    """
+    Given the name of a food and a dictionary with its updated nutritional
+    values, will update the existing food details in the database.
+    """
+    if not isinstance(name, str):
+        raise TypeError(f'Wrong type for name: {type(name)=}')
+    if not isinstance(updates, dict):
+        raise TypeError(f'Wrong type for updates: {type(updates)=}')
+
+    # Ensure only fields from REQUIRED_FLDS are updated
+    for field in updates:
+        if field not in REQUIRED_FLDS:
+            raise ValueError(f'Invalid field in updates: {field}')
+
+    return dbc.update_one(MENU_COLLECT, {NAME: name}, {"$set": updates})
+
+
 def main():
     food = get_food()
     print(f'{food=}')
