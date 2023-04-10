@@ -6,8 +6,6 @@ An example flask rest API server, for SE Fall 2022.
 
 [Frontend on Heroku](https://cheffing-it-up-front.herokuapp.com/)
 
-[Backend on pythonanywhere](https://alstons.pythonanywhere.com/)
-
 [Backend on Heroku](https://cheffing-it-up.herokuapp.com/)
 
 To build production, type `make prod`.
