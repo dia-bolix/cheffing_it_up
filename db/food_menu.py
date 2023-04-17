@@ -3,6 +3,7 @@ This module encapsulates the details of the menu
 """
 
 import db.db_connect as dbc
+# from db.db_connect import fetch_all_as_dict
 
 TEST_MENU = 'test menu'
 
@@ -107,19 +108,39 @@ def add_food(name, details):
     return dbc.insert_one(MENU_COLLECT, doc)
 
 
-def get_food_by_ingredient(ingredient):
+# def get_food_by_ingredient(ingredient):
+#     """
+#     Given a name of an ingredient, returns a list of names with all the menu
+#     items that include that ingredient.
+#     """
+#     if not isinstance(ingredient, list):
+#         raise ValueError("The argument must be a list of ingredients.")
+#     fd = get_food_dict()
+#     result = []
+#     for i in fd:
+#         if ingredient in fd[i][INGREDIENTS]:
+#             result.append(fd[i][NAME])
+#     return result
+
+# def get_food_by_ingredient(ingredients):
+#     fd = dbc.fetch_all_as_dict(NAME, MENU_COLLECT)
+#     menus_by_ingredient = []
+#     for i in fd:
+#         for ingredient in ingredients:
+#             if ingredient in fd[i][INGREDIENTS].keys():
+#                 menus_by_ingredient.append(fd[i])
+#                 break
+#     return menus_by_ingredient
+
+def get_food_by_ingredient(ingredients_list):
     """
-    Given a name of an ingredient, returns a list of names with all the menu
-    items that include that ingredient.
+    Given a list of ingredients, return a list of names
+    for all of the meals that contain any of those ingredients.
     """
-    if not isinstance(ingredient, list):
-        raise ValueError("The argument must be a list of ingredients.")
-    fd = get_food_dict()
-    result = []
-    for i in fd:
-        if ingredient in fd[i][INGREDIENTS]:
-            result.append(fd[i][NAME])
-    return result
+    menu_items = dbc.fetch_all(MENU_COLLECT)
+    return [item[NAME] for item in menu_items
+            if any(ingredient in item[INGREDIENTS]
+                   for ingredient in ingredients_list)]
 
 
 def get_food_by_time_of_day(time_of_day):
@@ -132,6 +153,13 @@ def get_food_by_time_of_day(time_of_day):
         if time_of_day in FOOD_MENU[i][MEAL_OF_DAY]:
             result.append(FOOD_MENU[i][NAME])
     return result
+
+
+def get_food_by_meal_of_day(meal_of_day):
+    menu_items = dbc.fetch_all(MENU_COLLECT)
+    print("Menu items:", menu_items)
+    return [item[NAME] for item in menu_items
+            if item[MEAL_OF_DAY].lower() == meal_of_day.lower()]
 
 
 def del_menu(name):
@@ -149,16 +177,6 @@ def get_food_by_calories_range(min_calories, max_calories):
     menu_items = dbc.fetch_all(MENU_COLLECT)
     return [item[NAME] for item in menu_items
             if min_calories <= item[CALORIES] <= max_calories]
-
-
-def get_food_by_meal_of_day(meal_of_day):
-    """
-    Given the type of meal (breakfast, lunch, dinner), return a list of names
-    for all of the meals served during that time of day.
-    """
-    menu_items = dbc.fetch_all(MENU_COLLECT)
-    return [item[NAME] for item in menu_items
-            if item[MEAL_OF_DAY].lower() == meal_of_day.lower()]
 
 
 def update_food_details(name, updates):
