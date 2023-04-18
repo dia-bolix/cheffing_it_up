@@ -200,6 +200,7 @@ MACRONUTRIENTS_payload = api.model('MACRONUTRIENTS', MACRONUTRIENTS)
 
 
 MICRONUTRIENTS = {}
+MICRONUTRIENTS['Vitamin A'] = fields.Integer(0)
 MICRONUTRIENTS['Vitamin C'] = fields.Integer(0)
 MICRONUTRIENTS['Calcium'] = fields.Integer(0)
 MICRONUTRIENTS['Iron'] = fields.Integer(0)

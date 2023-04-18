@@ -12,31 +12,27 @@ RUNNING_ON_CICD_SERVER = os.environ.get('CI', False)
 
 TEST_DEL_NAME = 'Menu to be deleted'
 
+
 def create_menu_details():
     details = {
-        fm.NAME: 'Pizza',
+        fm.NAME: 'test menu',
         fm.MEAL_OF_DAY: 'Dinner',
-        fm.INGREDIENTS: ['dough', 'tomato sauce', 
+        fm.INGREDIENTS: ['dough', 'tomato sauce',
                          'cheese', 'pepperoni'],
         fm.CALORIES: 250,
         fm.MACRONUTRIENTS: {
-            'protein': 10,
-            'carbohydrates': 30,
-            'fat': 12
+            'Protein': 10,
+            'Carbohydrates': 30,
+            'Fat': 12
         },
         fm.MICRONUTRIENTS: {
-            'vitamin C': 5,
-            'calcium': 200,
-            'iron': 1
+            'Vitamin A': 0,
+            'Vitamin C': 5,
+            'Calcium': 200,
+            'Iron': 1
         }
     }
     return details
-
-# def create_menu_details():
-#     details = {}
-#     for field in fm.REQUIRED_FLDS:
-#         details[field] = 2
-#     return details
 
 
 @pytest.fixture(scope='function')
@@ -126,21 +122,19 @@ def test_add_missing_field():
 #         assert len(fms) == 1
 #         assert fms[0]['name'] == 'test'
 
-# def test_get_food_by_ingredient(temp_menu):
-#     # Add a test food item with specific ingredients
-#     test_ingredients = ['dough', 'tomato sauce', 'cheese', 'pepperoni']
-#     test_food_details = create_menu_details()
-#     fm.add_food(test_food_details[fm.NAME], test_food_details)
+def test_get_food_by_ingredient(temp_menu):
+    # Add a test food item with specific ingredients
+    test_ingredients = ['dough', 'tomato sauce', 'cheese', 'pepperoni']
+    test_food_details = create_menu_details()
 
-#     # Get food by ingredient
-#     fms = fm.get_food_by_ingredient(test_ingredients)
+    # Get food by ingredient
+    fms = fm.get_food_by_ingredient(test_ingredients)
+    print('fms is', fms)
 
-#     # Check that we got the right food
-#     assert len(fms) == 1
-#     assert fms[0][fm.NAME] == test_food_details[fm.NAME]
+    # Check that we got the right food
+    assert len(fms) == 1
+    assert fms[0] == test_food_details[fm.NAME]
 
-#     # Clean up the test food item
-#     fm.del_menu(test_food_details[fm.NAME])
 
 def test_update_food_details(temp_menu):
     new_details = {
@@ -155,6 +149,7 @@ def test_update_food_details(temp_menu):
     assert updated_menu[fm.MEAL_OF_DAY] == new_details[fm.MEAL_OF_DAY]
     assert updated_menu[fm.INGREDIENTS] == new_details[fm.INGREDIENTS]
 
+
 def test_get_food_by_calories_range(temp_menu):
     min_calories = 200
     max_calories = 300
@@ -163,6 +158,7 @@ def test_get_food_by_calories_range(temp_menu):
     for menu in menus_in_range:
         menu_details = fm.get_food_details(menu)
         assert min_calories <= menu_details[fm.CALORIES] <= max_calories
+
 
 def test_get_food_by_meal_of_day(temp_menu):
     meal_of_day = 'ANY TIME'

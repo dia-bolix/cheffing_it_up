@@ -137,9 +137,10 @@ def get_food_by_ingredient(ingredients_list):
     Given a list of ingredients, return a list of names
     for all of the meals that contain any of those ingredients.
     """
+    dbc.connect_db()
     menu_items = dbc.fetch_all(MENU_COLLECT)
     return [item[NAME] for item in menu_items
-            if any(ingredient in item[INGREDIENTS]
+            if all(ingredient in item[INGREDIENTS]
                    for ingredient in ingredients_list)]
 
 
@@ -149,13 +150,18 @@ def get_food_by_time_of_day(time_of_day):
     for all of the meals served during that time of day.
     """
     result = []
-    for i in FOOD_MENU:
-        if time_of_day in FOOD_MENU[i][MEAL_OF_DAY]:
-            result.append(FOOD_MENU[i][NAME])
+    dbc.connect_db()
+    menu_items = dbc.fetch_all(MENU_COLLECT)
+    # print(menu_items)
+    for entry in menu_items:
+        print(entry)
+        if time_of_day in entry[MEAL_OF_DAY]:
+            result.append(entry[NAME])
     return result
 
 
 def get_food_by_meal_of_day(meal_of_day):
+    dbc.connect_db()
     menu_items = dbc.fetch_all(MENU_COLLECT)
     print("Menu items:", menu_items)
     return [item[NAME] for item in menu_items
@@ -166,6 +172,7 @@ def del_menu(name):
     """
     Given the name of a menu, delete that menu from the database.
     """
+    dbc.connect_db()
     return dbc.del_one(MENU_COLLECT, {MENU_KEY: name})
 
 
@@ -174,6 +181,7 @@ def get_food_by_calories_range(min_calories, max_calories):
     Given a range of calories (min_calories and max_calories), returns a list
     of names with all the menu items that fall within that range.
     """
+    dbc.connect_db()
     menu_items = dbc.fetch_all(MENU_COLLECT)
     return [item[NAME] for item in menu_items
             if min_calories <= int(item[CALORIES]) <= max_calories]
@@ -194,6 +202,7 @@ def update_food_details(name, updates):
         if field not in REQUIRED_FLDS:
             raise ValueError(f'Invalid field in updates: {field}')
 
+    dbc.connect_db()
     return dbc.update_one(MENU_COLLECT, {NAME: name}, {"$set": updates})
 
 
@@ -202,7 +211,6 @@ def main():
     print(f'{food=}')
     #     print(f'{get_food_details(TEST_MENU)=}')
     #     print(get_food_by_time_of_day("Dessert"))
-    #     print(get_food_by_ingredient("cheese"))
 
 
 if __name__ == '__main__':
