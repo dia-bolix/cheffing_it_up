@@ -122,15 +122,6 @@ def add_food(name, details):
 #             result.append(fd[i][NAME])
 #     return result
 
-# def get_food_by_ingredient(ingredients):
-#     fd = dbc.fetch_all_as_dict(NAME, MENU_COLLECT)
-#     menus_by_ingredient = []
-#     for i in fd:
-#         for ingredient in ingredients:
-#             if ingredient in fd[i][INGREDIENTS].keys():
-#                 menus_by_ingredient.append(fd[i])
-#                 break
-#     return menus_by_ingredient
 
 def get_food_by_ingredient(ingredients_list):
     """

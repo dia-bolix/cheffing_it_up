@@ -129,7 +129,6 @@ def test_add_missing_field():
 # def test_get_food_by_ingredient(temp_menu):
 #     # Add a test food item with specific ingredients
 #     test_ingredients = ['dough', 'tomato sauce', 'cheese', 'pepperoni']
-#     test_food_details = create_menu_details()
 #     fm.add_food(test_food_details[fm.NAME], test_food_details)
 
 #     # Get food by ingredient
@@ -164,13 +163,13 @@ def test_get_food_by_calories_range(temp_menu):
         menu_details = fm.get_food_details(menu)
         assert min_calories <= menu_details[fm.CALORIES] <= max_calories
 
-# def test_get_food_by_meal_of_day(temp_menu):
-#     meal_of_day = 'ANY TIME'
-#     menus_by_meal_of_day = fm.get_food_by_meal_of_day(meal_of_day)
+def test_get_food_by_meal_of_day(temp_menu):
+    meal_of_day = 'ANY TIME'
+    menus_by_meal_of_day = fm.get_food_by_meal_of_day(meal_of_day)
 
-#     for menu in menus_by_meal_of_day:
-#         menu_details = fm.get_food_details(menu)
-#         assert menu_details[fm.MEAL_OF_DAY].lower() == meal_of_day.lower()
+    for menu in menus_by_meal_of_day:
+        menu_details = fm.get_food_details(menu)
+        assert menu_details[fm.MEAL_OF_DAY].lower() == meal_of_day.lower()
 
 # def test_get_food_by_ingredient(temp_menu):
 #     test_ingredient = 'MAGIC'
