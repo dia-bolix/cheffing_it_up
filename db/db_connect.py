@@ -36,8 +36,6 @@ def connect_db():
 
 
 def fetch_all(collection, db=MENU_DB):
-    print('in here')
-    print(client[db][collection])
     ret = []
     for doc in client[db][collection].find():
         ret.append(doc)

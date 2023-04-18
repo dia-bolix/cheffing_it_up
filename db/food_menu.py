@@ -176,7 +176,7 @@ def get_food_by_calories_range(min_calories, max_calories):
     """
     menu_items = dbc.fetch_all(MENU_COLLECT)
     return [item[NAME] for item in menu_items
-            if min_calories <= item[CALORIES] <= max_calories]
+            if min_calories <= int(item[CALORIES]) <= max_calories]
 
 
 def update_food_details(name, updates):
