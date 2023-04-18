@@ -2,7 +2,7 @@
 # from msilib.schema import Error
 import pytest
 
-import db.food_menu as fm
+import db.recipes as fm
 
 import os
 

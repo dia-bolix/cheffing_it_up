@@ -13,7 +13,7 @@ from flask_cors import CORS
 
 
 import db.food_types as ftyp
-import db.food_menu as fm
+import db.recipes as fm
 import db.users as usr
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ api = Api(app)
 cors = CORS(app)
 
 
-FOOD_MENU_NS = 'food_menu'
+RECIPES_NS = 'recipes'
 USERS_NS = 'users'
 FOOD_TYPES_NS = 'food_types'
 
@@ -29,8 +29,8 @@ users = Namespace(USERS_NS, 'Users')
 api.add_namespace(users)
 food_types = Namespace(FOOD_TYPES_NS, 'Food_Types')
 api.add_namespace(food_types)
-food_menu = Namespace(FOOD_MENU_NS, 'Food_Menu')
-api.add_namespace(food_menu)
+recipes = Namespace(RECIPES_NS, 'Recipes')
+api.add_namespace(recipes)
 
 
 LIST = 'list'
@@ -52,15 +52,15 @@ FOOD_TYPE_LIST_W_NS = f'{FOOD_TYPES_NS}/{LIST}'
 FOOD_TYPE_LIST_NM = f'{FOOD_TYPES_NS}_list'
 FOOD_TYPE_DETAILS = f'/{DETAILS}'
 
-FOOD_MENU_LIST = f'/{LIST}'
-FOOD_MENU_DICT = f'/{DICT}'
-FOOD_MENU_DICT_W_NS = f'{FOOD_MENU_NS}/{DICT}'
-FOOD_MENU_DICT_NM = f'{FOOD_MENU_NS}_dict'
-FOOD_MENU_LIST_W_NS = f'{FOOD_MENU_NS}/{LIST}'
-FOOD_MENU_LIST_NM = f'{FOOD_MENU_NS}_list'
-FOOD_MENU_DETAILS = f'/{DETAILS}'
-FOOD_MENU_ADD = f'/{ADD}'
-FOOD_MENU_FIND = f'/{FIND}'
+RECIPES_LIST = f'/{LIST}'
+RECIPES_DICT = f'/{DICT}'
+RECIPES_DICT_W_NS = f'{RECIPES_NS}/{DICT}'
+RECIPES_DICT_NM = f'{RECIPES_NS}_dict'
+RECIPES_LIST_W_NS = f'{RECIPES_NS}/{LIST}'
+RECIPES_LIST_NM = f'{RECIPES_NS}_list'
+RECIPES_DETAILS = f'/{DETAILS}'
+RECIPES_ADD = f'/{ADD}'
+RECIPES_FIND = f'/{FIND}'
 
 USER_DICT = f'/{DICT}'
 USER_DICT_W_NS = f'{USERS_NS}/{DICT}'
@@ -103,8 +103,8 @@ class MainMenu(Resource):
                 'Choices': {
                     '1': {'url': f'/{FOOD_TYPE_DICT_W_NS}', 'method': 'get',
                           'text': 'List Food Types'},
-                    '2': {'url': f'/{FOOD_MENU_DICT_W_NS}',
-                          'method': 'get', 'text': 'List Menu'},
+                    '2': {'url': f'/{RECIPES_DICT_W_NS}',
+                          'method': 'get', 'text': 'List Recipes'},
                     '3': {'url': f'/{USER_DICT_W_NS}',
                           'method': 'get', 'text': 'List Users'},
                     'X': {'text': 'Exit'},
@@ -136,22 +136,22 @@ class FoodTypeDict(Resource):
         """
         return {'Data': ftyp.get_food_types_dict(),
                 'Type': 'Data',
-                'Title': 'Dictonary of the food menu'}
+                'Title': 'Dictonary of recipes'}
 
 
-@food_menu.route(FOOD_TYPE_DICT)
-class MenuList(Resource):
+@recipes.route(FOOD_TYPE_DICT)
+class RecipeList(Resource):
     """
-    This will get a dict all the items currently in the menu
+    This will get a dict of all the recipes currently in the database
     """
 
     def get(self):
         """
-        Returns a dict all the items currently in the menu
+        This will get a dict of all the recipes currently in the database
         """
         return {'Data': fm.get_food_dict(),
                 'Type': 'Data',
-                'Title': 'Dictonary of the food menu'}
+                'Title': 'Dictonary of recipes'}
 
 
 @food_types.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
@@ -174,43 +174,56 @@ class FoodTypeDetails(Resource):
             return {}
 
 
-@food_menu.route(f'{FOOD_MENU_DETAILS}/<food_menu>')
-class MenuDetails(Resource):
+@recipes.route(f'{RECIPES_DETAILS}/<name>')
+class RecipeDetails(Resource):
     """
-    This will return details on a menu item given its name
+    This will return details on a recipe given its name
     """
-    @api.response(HTTPStatus.OK, 'Success')
+    @recipes.response(HTTPStatus.OK, 'Success')
     @api.response(HTTPStatus.NOT_FOUND, 'Not Found')
-    def get(self, food_menu):
+    def get(self, name):
         """
-        This will return details on a menu item given its name
+        This will return details on a recipe given its name
         """
-        mt = fm.get_food_details(food_menu)
+        mt = fm.get_food_details(name)
         if mt is not None:
-            return {food_menu: fm.get_food_details(food_menu)}
+            return {name: fm.get_food_details(name)}
         else:
-            raise wz.NotFound(f'{food_menu} not found.')
+            raise wz.NotFound(f'{name} not found.')
 
 
-menu_fields = api.model('NewMenu', {
+MACRONUTRIENTS = {}
+MACRONUTRIENTS['Protein'] = fields.Integer(0)
+MACRONUTRIENTS['Carbohydrates'] = fields.Integer(0)
+MACRONUTRIENTS['Fat'] = fields.Integer(0)
+MACRONUTRIENTS_payload = api.model('MACRONUTRIENTS', MACRONUTRIENTS)
+
+
+MICRONUTRIENTS = {}
+MICRONUTRIENTS['Vitamin C'] = fields.Integer(0)
+MICRONUTRIENTS['Calcium'] = fields.Integer(0)
+MICRONUTRIENTS['Iron'] = fields.Integer(0)
+MICRONUTRIENTS_payload = api.model('MICRONUTRIENTS', MICRONUTRIENTS)
+
+recipe_fields = api.model('NewRecipe', {
     fm.NAME: fields.String,
     fm.MEAL_OF_DAY: fields.String,
-    fm.INGREDIENTS: fields.String,
+    fm.INGREDIENTS: fields.List(fields.String),
     fm.CALORIES: fields.Integer,
-    fm.MACRONUTRIENTS: fields.String,
-    fm.MICRONUTRIENTS: fields.String
+    fm.MACRONUTRIENTS: fields.Nested(MACRONUTRIENTS_payload),
+    fm.MICRONUTRIENTS: fields.Nested(MICRONUTRIENTS_payload)
 })
 
 
-@food_menu.route(FOOD_MENU_ADD)
-class AddMenu(Resource):
+@recipes.route(RECIPES_ADD)
+class AddRecipe(Resource):
     """
-    Add a Menu item
+    Add a recipe
     """
-    @api.expect(menu_fields)
+    @api.expect(recipe_fields)
     def post(self):
         """
-        Add a Menu item
+        Add a recipe
         """
         print(f'{request.json=}')
         name = request.json[fm.NAME]
@@ -218,17 +231,16 @@ class AddMenu(Resource):
         del request.json[fm.NAME]
 
 
-@food_menu.route(f'{FOOD_MENU_FIND}/<ingredient>')
-class FindMenu(Resource):
+@recipes.route(f'{RECIPES_FIND}/<ingredient>')
+class FindRecipe(Resource):
     """
-    Returns a list of names of food items with given ingredient
+    Returns a list of names of recipes with given ingredient
     """
     @api.expect(fields.String)
     def get(self, ingredient):
         """
-        Returns a list of names of food items with given ingredient
+        Returns a list of names of recipes with given ingredient
         """
-        # print(f'{request.json=}')
         mt = fm.get_food_by_ingredient(ingredient)
         if mt is not None:
             return {"Dishes with " + ingredient:

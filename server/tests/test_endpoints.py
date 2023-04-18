@@ -4,7 +4,7 @@ import pytest
 import server.endpoints as ep
 
 import db.users as usr
-import db.food_menu as fm
+import db.recipes as fm
 import db.food_types as ft
 
 #from unittest.mock import patch
