@@ -12,31 +12,31 @@ RUNNING_ON_CICD_SERVER = os.environ.get('CI', False)
 
 TEST_DEL_NAME = 'Menu to be deleted'
 
-# def create_menu_details():
-#     details = {
-#         fm.NAME: 'Pizza',
-#         fm.MEAL_OF_DAY: 'Dinner',
-#         fm.INGREDIENTS: ['dough', 'tomato sauce', 
-#                          'cheese', 'pepperoni'],
-#         fm.CALORIES: 250,
-#         fm.MACRONUTRIENTS: {
-#             'protein': 10,
-#             'carbohydrates': 30,
-#             'fat': 12
-#         },
-#         fm.MICRONUTRIENTS: {
-#             'vitamin C': 5,
-#             'calcium': 200,
-#             'iron': 1
-#         }
-#     }
-#     return details
-
 def create_menu_details():
-    details = {}
-    for field in fm.REQUIRED_FLDS:
-        details[field] = 2
+    details = {
+        fm.NAME: 'Pizza',
+        fm.MEAL_OF_DAY: 'Dinner',
+        fm.INGREDIENTS: ['dough', 'tomato sauce', 
+                         'cheese', 'pepperoni'],
+        fm.CALORIES: 250,
+        fm.MACRONUTRIENTS: {
+            'protein': 10,
+            'carbohydrates': 30,
+            'fat': 12
+        },
+        fm.MICRONUTRIENTS: {
+            'vitamin C': 5,
+            'calcium': 200,
+            'iron': 1
+        }
+    }
     return details
+
+# def create_menu_details():
+#     details = {}
+#     for field in fm.REQUIRED_FLDS:
+#         details[field] = 2
+#     return details
 
 
 @pytest.fixture(scope='function')
@@ -164,13 +164,13 @@ def test_get_food_by_calories_range(temp_menu):
         menu_details = fm.get_food_details(menu)
         assert min_calories <= menu_details[fm.CALORIES] <= max_calories
 
-# def test_get_food_by_meal_of_day(temp_menu):
-#     meal_of_day = 'ANY TIME'
-#     menus_by_meal_of_day = fm.get_food_by_meal_of_day(meal_of_day)
+def test_get_food_by_meal_of_day(temp_menu):
+    meal_of_day = 'ANY TIME'
+    menus_by_meal_of_day = fm.get_food_by_meal_of_day(meal_of_day)
 
-#     for menu in menus_by_meal_of_day:
-#         menu_details = fm.get_food_details(menu)
-#         assert menu_details[fm.MEAL_OF_DAY].lower() == meal_of_day.lower()
+    for menu in menus_by_meal_of_day:
+        menu_details = fm.get_food_details(menu)
+        assert menu_details[fm.MEAL_OF_DAY].lower() == meal_of_day.lower()
 
 # def test_get_food_by_ingredient(temp_menu):
 #     test_ingredient = 'MAGIC'
