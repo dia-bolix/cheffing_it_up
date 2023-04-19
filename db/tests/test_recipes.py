@@ -1,5 +1,3 @@
-# from lib2to3.pytree import type_repr
-# from msilib.schema import Error
 import pytest
 
 import db.recipes as fm
@@ -74,20 +72,6 @@ def test_get_menu_dict():
     assert len(fms) > 0
 
 
-# REMOVED AFTER TOP GETS IMPLEMENTED
-# def test_get_menu_dict():
-#     if not RUNNING_ON_CICD_SERVER:
-#         fmd = fm.get_food_dict()
-#         assert isinstance(fmd[fm.TEST_MENU], dict)
-#         assert len(fmd[fm.TEST_MENU]) > 1
-
-# def test_get_games_dict():
-#     if not RUNNING_ON_CICD_SERVER:
-#         fms = fm.get_games_dict()
-#         assert isinstance(fms, dict)
-#         assert len(fms) > 1
-
-
 def test_get_menu_details(temp_menu):
     fm_details = fm.get_food_details(fm.TEST_MENU)
     assert isinstance(fm_details, dict)
@@ -107,20 +91,6 @@ def test_add_missing_field():
     with pytest.raises(ValueError):
         fm.add_food('a new menu item', {'foo': 'bar'})
 
-
-# def test_get_food_by_ingredient():
-#     if not RUNNING_ON_CICD_SERVER:
-#         # Add food with ingredients
-#         details = create_menu_details()
-#         details['ingredients'] = ['tomato', 'cheese', 'bread']
-#         fm.add_food("test", details)
-
-#         # Get food by ingredient
-#         fms = fm.get_food_by_ingredient(['cheese'])
-
-#         # Check that we got the right food
-#         assert len(fms) == 1
-#         assert fms[0]['name'] == 'test'
 
 def test_get_food_by_ingredient(temp_menu):
     # Add a test food item with specific ingredients
@@ -150,6 +120,23 @@ def test_update_food_details(temp_menu):
     assert updated_menu[fm.INGREDIENTS] == new_details[fm.INGREDIENTS]
 
 
+def test_wrong_update_food_details(temp_menu):
+    right_name = 'name'
+    wrong_name = 123
+    wrong_details = []
+    right_details = {
+        fm.CALORIES: 300,
+        fm.MEAL_OF_DAY: 'Lunch',
+        fm.INGREDIENTS: ['test_ingredient']
+    }
+    # testing name isn't of right type
+    with pytest.raises(TypeError):
+        fm.update_food_details(wrong_name, right_details)
+    # testing that food_details isn't of right type
+    with pytest.raises(TypeError):
+        fm.update_food_details(right_name, wrong_details)
+
+
 def test_get_food_by_calories_range(temp_menu):
     min_calories = 200
     max_calories = 300
@@ -168,13 +155,6 @@ def test_get_food_by_meal_of_day(temp_menu):
         menu_details = fm.get_food_details(menu)
         assert menu_details[fm.MEAL_OF_DAY].lower() == meal_of_day.lower()
 
-# def test_get_food_by_ingredient(temp_menu):
-#     test_ingredient = 'MAGIC'
-#     menus_by_ingredient = fm.get_food_by_ingredient([test_ingredient])
-
-#     for menu in menus_by_ingredient:
-#         assert test_ingredient in menu[fm.INGREDIENTS]
-
 
 @pytest.fixture(scope='function')
 def new_menu():
@@ -185,18 +165,6 @@ def test_del_menu(new_menu):
     fm.del_menu(TEST_DEL_NAME)
     assert not fm.menu_exists(TEST_DEL_NAME)
 
-# def test_add_menu():
-#     if not RUNNING_ON_CICD_SERVER:
-#         details = {}
-#         for field in fm.REQUIRED_FLDS:
-#             details[field] = 2
-#         fm.add_food(fm.TEST_MENU, details)
-#         assert fm.menu_exists(fm.TEST_MENU)
-
-
-# def test_add_game():
-#     if not RUNNING_ON_CICD_SERVER:
-#         fm.add_food(fm.TEST_MENU, create_menu_details())
 
 def test_add_menu():
     fm.add_food(fm.TEST_MENU, create_menu_details())
