@@ -233,7 +233,8 @@ class AddRecipe(Resource):
 
         # Process the ingredients
         ingredients_str = request.json[fm.INGREDIENTS]
-        ingredients_list = [ingredient.strip() for ingredient in ingredients_str.split(',')]
+        ingredients_list = [ingredient.strip() for ingredient in
+                            ingredients_str.split(',')]
         request.json[fm.INGREDIENTS] = ingredients_list
 
         # Assuming macronutrients and micronutrients are already JSON objects
