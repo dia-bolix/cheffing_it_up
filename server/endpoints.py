@@ -19,6 +19,7 @@ import db.users as usr
 app = Flask(__name__)
 api = Api(app)
 cors = CORS(app)
+CORS(app, origins=["https://cheffing-it-up.herokuapp.com/", "https://cheffing-it-up-front.herokuapp.com/"])
 
 
 RECIPES_NS = 'recipes'
