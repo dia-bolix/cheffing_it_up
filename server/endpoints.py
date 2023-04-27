@@ -73,6 +73,7 @@ USER_LIST_W_NS = f'{USERS_NS}/{LIST}'
 USER_LIST_NM = f'{USERS_NS}_list'
 USER_DETAILS = f'/{USERS_NS}/{DETAILS}'
 USER_ADD = f'/{ADD}'
+USER_ADD_W_NS = f'{USERS_NS}/{ADD}'
 
 
 @api.route(HELLO)
@@ -297,7 +298,7 @@ user_fields = api.model('NewUser', {
 })
 
 
-@api.route(USER_ADD)
+@users.route(USER_ADD)
 class AddUser(Resource):
     """
     Add a user.

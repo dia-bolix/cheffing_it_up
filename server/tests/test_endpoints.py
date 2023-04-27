@@ -91,7 +91,7 @@ def test_add_user():
     """
     Test adding a user.
     """
-    resp = TEST_CLIENT.post(ep.USER_ADD, json=SAMPLE_USER)
+    resp = TEST_CLIENT.post(ep.USER_ADD_W_NS, json=SAMPLE_USER)
     print(usr.users)
     assert usr.user_exists(SAMPLE_USER_NM)
     usr.del_user(SAMPLE_USER_NM)
