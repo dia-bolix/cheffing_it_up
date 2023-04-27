@@ -1,5 +1,6 @@
 
 import pytest
+from http import HTTPStatus
 
 import server.endpoints as ep
 
@@ -7,11 +8,11 @@ import db.users as usr
 import db.recipes as fm
 import db.food_types as ft
 
-#from unittest.mock import patch
+from unittest.mock import patch
 
 TEST_CLIENT = ep.app.test_client()
 TEST_FOOD_TYPE = 'breakfast'
-#SAMPLE_FOOD_TYPE_LIST = ["breakfast", "lunch", "dinner"]
+SAMPLE_FOOD_TYPE_LIST = ["breakfast", "lunch", "dinner"]
 
 
 SAMPLE_USER_NM = 'SampleUser'
@@ -21,33 +22,37 @@ SAMPLE_USER = {
     usr.FULL_NAME: 'Sample User',
 }
 
+
 def test_hello():
     """
     See if Hello works.
     """
     resp_json = TEST_CLIENT.get(ep.HELLO).get_json()
-    
+
     assert isinstance(resp_json[ep.MESSAGE], str)
 
 
-
-# @patch("db.users.get_food_type_list", return_value=SAMPLE_FOOD_TYPE_LIST)
-# def test_get_food_type_list(mock_get_food_type_list):
-#     """
-#     See if we can get a food type list properly.
-#     Return should look like:
-#         {FOOD_TYPE_LIST_NM: [list of food types...]}
-#     """
-#     resp_json = 
-
-def test_get_food_type_list():
+@patch("db.food_types.get_food_types", return_value=SAMPLE_FOOD_TYPE_LIST)
+def test_get_food_type_list(mock_get_food_type_list):
     """
-    See if we can get a charcter type list properly.
+    See if we can get a food type list properly.
     Return should look like:
-        {CHAR_TYPE_LIST_NM: [list of chars types...]}
+        {FOOD_TYPE_LIST_NM: [list of food types...]}
     """
-    resp_json = TEST_CLIENT.get(ep.FOOD_TYPE_LIST_W_NS).get_json()
-    assert isinstance(resp_json[ep.FOOD_TYPE_LIST_NM], list)
+    resp_json = TEST_CLIENT.get(f'food_types/list')
+    assert resp_json.status_code == HTTPStatus.OK
+    assert isinstance(resp_json.json, dict)
+    assert isinstance(resp_json.json[ep.FOOD_TYPE_LIST_NM], list)
+
+
+# def test_get_food_type_list():
+#     """
+#     See if we can get a charcter type list properly.
+#     Return should look like:
+#         {CHAR_TYPE_LIST_NM: [list of chars types...]}
+#     """
+#     resp_json = TEST_CLIENT.get(ep.FOOD_TYPE_LIST_W_NS).get_json()
+#     assert isinstance(resp_json[ep.FOOD_TYPE_LIST_NM], list)
 
 
 def test_get_food_type_list_not_empty():
@@ -67,7 +72,7 @@ def test_get_food_type_list_not_empty():
 #     resp_json = TEST_CLIENT.get(f'{ep.FOOD_TYPE_DETAILS}/{TEST_FOOD_TYPE}').get_json()
 #     assert TEST_FOOD_TYPE in resp_json
 #     assert isinstance(resp_json[TEST_FOOD_TYPE], dict)
-    
+
 
 # def test_get_food_type_details():
 #     """
