@@ -145,7 +145,7 @@ class FoodTypeDict(Resource):
                 'Title': 'Dictonary of recipes'}
 
 
-@recipes.route(FOOD_TYPE_DICT)
+@recipes.route(RECIPES_DICT)
 class RecipeList(Resource):
     """
     This will get a dict of all the recipes currently in the database
