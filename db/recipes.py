@@ -159,7 +159,7 @@ def get_food_by_meal_of_day(meal_of_day):
             if item[MEAL_OF_DAY].lower() == meal_of_day.lower()]
 
 
-def del_menu(name):
+def delete_food(name):
     """
     Given the name of a menu, delete that menu from the database.
     """

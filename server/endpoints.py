@@ -45,6 +45,7 @@ FIND = 'find'
 MAIN_MENU = '/main_menu'
 MAIN_MENU_NM = 'Main Menu'
 USERS_NS = 'users'
+DELETE = 'delete'
 
 FOOD_TYPE_LIST = f'/{LIST}'
 FOOD_TYPE_DICT = f'/{DICT}'
@@ -63,6 +64,8 @@ RECIPES_LIST_NM = f'{RECIPES_NS}_list'
 RECIPES_DETAILS = f'/{DETAILS}'
 RECIPES_ADD = f'/{ADD}'
 RECIPES_FIND = f'/{FIND}'
+RECIPES_DELETE = f'/{DELETE}'
+RECIPES_DELETE_W_NS = f'{RECIPES_NS}/{DELETE}'
 
 USER_DICT = f'/{DICT}'
 USER_DICT_W_NS = f'{USERS_NS}/{DICT}'
@@ -261,6 +264,24 @@ class FindRecipe(Resource):
                     fm.get_food_by_ingredient(ingredient)}
         else:
             raise wz.NotFound(f'{request.json} not found')
+
+
+@recipes.route(f'{RECIPES_DELETE}/<name>')
+class DeleteRecipe(Resource):
+    """
+    This will delete a recipe given its name
+    """
+    @recipes.response(HTTPStatus.OK, 'Success')
+    @recipes.response(HTTPStatus.NOT_FOUND, 'Not Found')
+    def delete(self, name):
+        """
+        This will delete a recipe given its name
+        """
+        deleted = fm.delete_food(name)
+        if deleted:
+            return {'message': f'Recipe {name} deleted successfully'}
+        else:
+            raise wz.NotFound(f'Recipe {name} not found')
 
 
 @users.route(USER_DICT)

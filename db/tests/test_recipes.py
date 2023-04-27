@@ -45,7 +45,7 @@ def temp_menu():
     #     return True
     fm.add_food(fm.TEST_MENU, create_menu_details())
     yield
-    fm.del_menu(fm.TEST_MENU)
+    fm.delete_food(fm.TEST_MENU)
 
 # TO BE ADDED
 # def test_get_menu(temp_menu):
@@ -162,14 +162,14 @@ def new_menu():
 
 
 def test_del_menu(new_menu):
-    fm.del_menu(TEST_DEL_NAME)
+    fm.delete_food(TEST_DEL_NAME)
     assert not fm.menu_exists(TEST_DEL_NAME)
 
 
 def test_add_menu():
     fm.add_food(fm.TEST_MENU, create_menu_details())
     assert fm.menu_exists(fm.TEST_MENU)
-    fm.del_menu(fm.TEST_MENU)
+    fm.delete_food(fm.TEST_MENU)
 
 
 @skip("adding a skip test")
