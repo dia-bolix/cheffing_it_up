@@ -7,7 +7,7 @@ from http import HTTPStatus
 from flask import Flask, request
 from flask_restx import Resource, Api, fields, Namespace
 import werkzeug.exceptions as wz
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 # import db.db as db
 
@@ -266,6 +266,7 @@ class FindRecipe(Resource):
             raise wz.NotFound(f'{request.json} not found')
 
 
+@cross_origin()
 @recipes.route(f'{RECIPES_DELETE}/<name>')
 class DeleteRecipe(Resource):
     """
