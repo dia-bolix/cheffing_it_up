@@ -71,7 +71,8 @@ def del_one(collection, filt, db=MENU_DB):
     """
     Find with a filter and return on the first doc found.
     """
-    client[db][collection].delete_one(filt)
+    result = client[db][collection].delete_one(filt)
+    return result.deleted_count
 
 
 def update_one(collection, query, update, db=MENU_DB):
