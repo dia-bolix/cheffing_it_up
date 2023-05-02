@@ -173,7 +173,6 @@ class RecipeList(Resource):
                 'Title': 'Dictionary of recipes'}
 
 
-
 @food_types.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
 class FoodTypeDetails(Resource):
     """
