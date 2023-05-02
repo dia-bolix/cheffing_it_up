@@ -156,9 +156,12 @@ def get_food_by_ingredient(ingredients_list):
     """
     dbc.connect_db()
     menu_items = dbc.fetch_all(MENU_COLLECT)
+    tmp = ingredients_list
+    if (type(ingredients_list) == str):
+        tmp = ingredients_list.split(',')
     return [item[NAME] for item in menu_items
             if all(ingredient in item[INGREDIENTS]
-                   for ingredient in ingredients_list)]
+                   for ingredient in tmp)]
 
 
 def get_food_by_time_of_day(time_of_day):
