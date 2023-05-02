@@ -156,14 +156,13 @@ class RecipeList(Resource):
         This will get a dict of all the recipes currently in the database
         """
         meal_type = request.args.get('meal_type')
-        min_calories = request.args.get('min_calories')
-        max_calories = request.args.get('max_calories')
         sort_by = request.args.get('sort_by')
 
-        if min_calories is not None:
-            min_calories = int(min_calories)
-        if max_calories is not None:
-            max_calories = int(max_calories)
+        min_calories = request.args.get('min_calories')
+        max_calories = request.args.get('max_calories')
+
+        min_calories = int(min_calories) if min_calories else None
+        max_calories = int(max_calories) if max_calories else None
 
         return {'Data': fm.get_food_dict(meal_type=meal_type,
                                          min_calories=min_calories,
