@@ -155,9 +155,17 @@ class RecipeList(Resource):
         """
         This will get a dict of all the recipes currently in the database
         """
-        return {'Data': fm.get_food_dict(),
+        meal_type = request.args.get('meal_type')
+        min_calories = request.args.get('min_calories', type=int)
+        max_calories = request.args.get('max_calories', type=int)
+        sort_by = request.args.get('sort_by')
+
+        return {'Data': fm.get_food_dict(meal_type=meal_type,
+                                         min_calories=min_calories,
+                                         max_calories=max_calories,
+                                         sort_by=sort_by),
                 'Type': 'Data',
-                'Title': 'Dictonary of recipes'}
+                'Title': 'Dictionary of recipes'}
 
 
 @food_types.route(f'{FOOD_TYPE_DETAILS}/<food_types>')
