@@ -62,22 +62,18 @@ def get_food():
     # return list(FOOD_MENU.keys())
 
 
-def get_food_dict(meal_type=None, min_calories=None,
-                  max_calories=None, sort_by=None):
+def get_food_dict(meal_type=None, min_calories=None, max_calories=None, sort_by=None):
     """
     Returns a dictionary of all food menu items.
     """
     dbc.connect_db()
     food = dbc.fetch_all_as_dict(MENU_KEY, MENU_COLLECT)
-    # if meal_type is None and min_calories is None and
-    # max_calories is None and sort_by is None:
-    #     return food
 
     filtered_food = {}
 
     for name, recipe in food.items():
         # Filter by meal_type
-        if meal_type is not None and recipe["meal of Day"] != meal_type:
+        if meal_type is not None and recipe["meal_of_day"] != meal_type:
             continue
 
         # Filter by calories
@@ -92,14 +88,13 @@ def get_food_dict(meal_type=None, min_calories=None,
     # Sort the filtered_food dictionary based on the 'sort_by' parameter
     if sort_by is not None:
         if sort_by == 'alphabetical':
-            filtered_food = dict(sorted(filtered_food.items(),
-                                        key=lambda item: item[0]))
+            filtered_food = dict(sorted(filtered_food.items(), key=lambda item: item[0]))
         elif sort_by == 'calories':
-            filtered_food = dict(sorted(filtered_food.items(),
-                                        key=lambda item: item[1]['calories']))
+            filtered_food = dict(sorted(filtered_food.items(), key=lambda item: item[1]['calories']))
         # Add more sorting options here if needed
 
     return filtered_food
+
 
 
 # def get_food_details(name):
