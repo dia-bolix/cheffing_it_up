@@ -10,7 +10,7 @@ ANYTIME = 'anytime'
 
 FOOD_TYPES = {BREAKFAST: {'time': "6am - 8am"},
               LUNCH: {'time': "11am-1pm"},
-              DINNER: {'time': "5pm-7pm"}, 
+              DINNER: {'time': "5pm-7pm"},
               ANYTIME: {'time': "Any Time"}}
 
 
