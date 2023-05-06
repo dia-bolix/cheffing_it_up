@@ -69,7 +69,8 @@ def get_food_dict(meal_type=None, min_calories=None,
     """
     dbc.connect_db()
     food = dbc.fetch_all_as_dict(MENU_KEY, MENU_COLLECT)
-
+    if meal_type is None:
+        return food
     filtered_food = {}
 
     for name, recipe in food.items():
