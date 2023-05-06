@@ -74,7 +74,7 @@ def get_food_dict(meal_type=None, min_calories=None,
     for name, recipe in food.items():
         # Filter by meal_type
         if (
-            meal_type not in (None, "null") and
+            meal_type not in (None, "null", "") and
             recipe["meal of Day"] != meal_type
         ):
             continue
