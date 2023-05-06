@@ -69,13 +69,14 @@ def get_food_dict(meal_type=None, min_calories=None,
     """
     dbc.connect_db()
     food = dbc.fetch_all_as_dict(MENU_KEY, MENU_COLLECT)
-    if meal_type is None:
-        return food
     filtered_food = {}
 
     for name, recipe in food.items():
         # Filter by meal_type
-        if meal_type is not None and recipe["meal of Day"] != meal_type:
+        if (
+            meal_type not in (None, "null") and
+            recipe["meal of Day"] != meal_type
+        ):
             continue
 
         # Filter by calories
