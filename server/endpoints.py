@@ -7,6 +7,7 @@ from http import HTTPStatus
 from flask import Flask, request
 from flask_restx import Resource, Api, fields, Namespace
 import werkzeug.exceptions as wz
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS, cross_origin
 
 # import db.db as db
@@ -340,8 +341,11 @@ class Register(Resource):
         if usr.user_exists(username):
             return {"error": "User already exists"}, 400
 
-        usr.add_user(username, password, {usr.EMAIL: email,
-                                          usr.FULL_NAME: full_name})
+        # Hash the password before storing it in the database
+        hashed_password = generate_password_hash(password)
+
+        usr.add_user(username, hashed_password, {usr.EMAIL: email,
+                                                 usr.FULL_NAME: full_name})
         return {"success": "User registered successfully"}, 201
 
 
@@ -355,7 +359,12 @@ class Login(Resource):
         if not username or not password:
             return {"error": "Missing required fields"}, 400
 
-        if usr.authenticate_user(username, password):
+        # Get the stored hashed password for the user
+        stored_hashed_password = usr.get_hashed_password(username)
+
+        is_valid_password = check_password_hash(stored_hashed_password,
+                                                password)
+        if stored_hashed_password and is_valid_password:
             return {"success": "User authenticated"}, 200
         else:
             return {"error": "Invalid username or password"}, 401
