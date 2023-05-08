@@ -326,8 +326,22 @@ class UserList(Resource):
         return {USER_LIST_NM: usr.get_users()}
 
 
+register_model = api.model('Register', {
+    'username': fields.String(required=True, description='Username'),
+    'password': fields.String(required=True, description='Password'),
+    'email': fields.String(required=True, description='Email'),
+    'full_name': fields.String(required=True, description='Full Name')
+})
+
+login_model = api.model('Login', {
+    'username': fields.String(required=True, description='Username'),
+    'password': fields.String(required=True, description='Password')
+})
+
+
 @users.route('/register', methods=['POST'])
 class Register(Resource):
+    @api.expect(register_model)
     def post(self):
         data = request.get_json()
         username = data.get('username')
@@ -351,6 +365,7 @@ class Register(Resource):
 
 @users.route('/login', methods=['POST'])
 class Login(Resource):
+    @api.expect(login_model)
     def post(self):
         data = request.get_json()
         username = data.get('username')
