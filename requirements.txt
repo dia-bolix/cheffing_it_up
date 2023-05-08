@@ -7,3 +7,4 @@ gitpython
 pytest-cov
 Flask_Cors
 gunicorn
+bcrypt
