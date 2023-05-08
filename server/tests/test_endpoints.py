@@ -92,21 +92,20 @@ def test_get_food_type_list_not_empty():
 #         assert False, 'Response is None'
 
 
-# def test_add_user(app, client):
-#     # Call the /register endpoint to add the sample user
-#     response = client.post('/users/register', json={
-#         'username': SAMPLE_USER_NM,
-#         'password': SAMPLE_USER_PW,
-#         'email': SAMPLE_USER_EMAIL,
-#         'full_name': SAMPLE_USER_FULL_NAME
-#     })
+def test_add_user():
+    dbc.connect_db()
+    response = TEST_CLIENT.post('/users/register', json={
+        'username': SAMPLE_USER_NM,
+        'password': SAMPLE_USER_PW,
+        'email': SAMPLE_USER_EMAIL,
+        'full_name': SAMPLE_USER_FULL_NAME
+    })
 
-#     # Check if the user has been added successfully
-#     assert response.status_code == 201
+    # Check if the user has been added successfully
+    assert response.status_code == HTTPStatus.CREATED
 
-#     # Check if the user exists
-#     assert usr.user_exists(SAMPLE_USER_NM)
-
+    # Check if the user exists
+    assert usr.user_exists(SAMPLE_USER_NM)
 
 
 def test_get_user_list():
