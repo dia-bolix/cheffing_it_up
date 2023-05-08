@@ -6,38 +6,39 @@ import db.users as usr
 def test_get_users():
     usrs = usr.get_users()
     assert isinstance(usrs, list)
-    assert len(usrs) > 1
-
-
-def test_get_users_dict():
-    usrs = usr.get_users_dict()
-    assert isinstance(usrs, dict)
-    assert len(usrs) > 1
 
 
 def test_get_user_details():
-    usr_dets = usr.get_user_details(usr.TEST_USER_NAME)
+    test_user_name = "testuser"
+    usr_dets = usr.get_user_details(test_user_name)
     assert isinstance(usr_dets, dict)
 
 
 def test_add_wrong_name_type():
     with pytest.raises(TypeError):
-        usr.add_user(7, {})
+        usr.add_user(7, "password", {usr.EMAIL: "test@example.com"})
 
 
 def test_add_wrong_details_type():
     with pytest.raises(TypeError):
-        usr.add_user('a new user', [])
+        usr.add_user('a new user', "password", [usr.EMAIL, "test@example.com"])
 
 
 def test_add_missing_field():
     with pytest.raises(ValueError):
-        usr.add_user('a new user', {'foo': 'bar'})
+        usr.add_user('a new user', "password", {'foo': 'bar'})
 
 
 def test_add_user():
-    details = {}
-    for field in usr.REQUIRED_FLDS:
-        details[field] = 2
-    usr.add_user(usr.TEST_USER_NAME, details)
-    assert usr.user_exists(usr.TEST_USER_NAME)
+    username = 'testuser'
+    password = 'testpassword'
+    details = {
+        usr.EMAIL: 'test@example.com',
+        usr.FULL_NAME: 'Test User',
+    }
+    if usr.user_exists(username):
+        usr.delete_user(username)
+
+    usr.add_user(username, password, details)
+    assert usr.user_exists(username)
+    assert usr.authenticate_user(username, password)

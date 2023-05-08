@@ -1,13 +1,54 @@
 import os
-
+import bcrypt
 import pymongo as pm
 
 REMOTE = "1"
 LOCAL = "0"
 
 MENU_DB = 'food_menudb'
+LOGIN_PW_COLLECTION = 'login_pw'
 
 client = None
+
+PASSWORD = 'password'
+NAME = 'name'
+EMAIL = 'email'
+FULL_NAME = 'full_name'
+
+
+def hash_password(password):
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(password.encode(), salt)
+
+
+def verify_password(password, hashed_password):
+    return bcrypt.checkpw(password.encode(), hashed_password)
+
+
+def add_user(name, password, details,
+             collection=LOGIN_PW_COLLECTION, db=MENU_DB):
+    if not isinstance(name, str):
+        raise TypeError(f'Wrong type for name: {type(name)=}')
+    if not isinstance(details, dict):
+        raise TypeError(f'Wrong type for details: {type(details)=}')
+
+    hashed_password = hash_password(password)
+    details[PASSWORD] = hashed_password
+    details[NAME] = name
+
+    # Insert the user details into the MongoDB collection
+    insert_one(collection, details, db=db)
+
+
+def authenticate_user(name, password,
+                      collection=LOGIN_PW_COLLECTION, db=MENU_DB):
+    user_details = fetch_one(collection, {NAME: name}, db=db)
+
+    if user_details is None:
+        return False
+
+    hashed_password = user_details[PASSWORD]
+    return verify_password(password, hashed_password)
 
 
 def connect_db():

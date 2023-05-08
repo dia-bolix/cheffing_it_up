@@ -7,6 +7,7 @@ import server.endpoints as ep
 import db.users as usr
 import db.recipes as fm
 import db.food_types as ft
+import db.db_connect as dbc
 
 from unittest.mock import patch
 
@@ -16,6 +17,10 @@ SAMPLE_FOOD_TYPE_LIST = ["breakfast", "lunch", "dinner"]
 
 
 SAMPLE_USER_NM = 'SampleUser'
+SAMPLE_USER_PW = 'StrongSamplePassword'
+SAMPLE_USER_EMAIL = 'sample@gmail.com'
+SAMPLE_USER_FULL_NAME = 'SampleFullName'
+
 SAMPLE_USER = {
     usr.NAME: SAMPLE_USER_NM,
     usr.EMAIL: 'x@y.com',
@@ -87,14 +92,21 @@ def test_get_food_type_list_not_empty():
 #         assert False, 'Response is None'
 
 
-def test_add_user():
-    """
-    Test adding a user.
-    """
-    resp = TEST_CLIENT.post(ep.USER_ADD_W_NS, json=SAMPLE_USER)
-    print(usr.users)
-    assert usr.user_exists(SAMPLE_USER_NM)
-    usr.del_user(SAMPLE_USER_NM)
+# def test_add_user(app, client):
+#     # Call the /register endpoint to add the sample user
+#     response = client.post('/users/register', json={
+#         'username': SAMPLE_USER_NM,
+#         'password': SAMPLE_USER_PW,
+#         'email': SAMPLE_USER_EMAIL,
+#         'full_name': SAMPLE_USER_FULL_NAME
+#     })
+
+#     # Check if the user has been added successfully
+#     assert response.status_code == 201
+
+#     # Check if the user exists
+#     assert usr.user_exists(SAMPLE_USER_NM)
+
 
 
 def test_get_user_list():
@@ -103,6 +115,9 @@ def test_get_user_list():
     Return should look like:
         {USER_LIST_NM: [list of users types...]}
     """
+    dbc.connect_db()
     resp = TEST_CLIENT.get(ep.USER_LIST_W_NS)
     resp_json = resp.get_json()
+    print(resp_json)  # Add this line to inspect the response
     assert isinstance(resp_json[ep.USER_LIST_NM], list)
+

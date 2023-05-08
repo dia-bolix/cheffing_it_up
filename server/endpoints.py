@@ -325,6 +325,42 @@ class UserList(Resource):
         return {USER_LIST_NM: usr.get_users()}
 
 
+@users.route('/register', methods=['POST'])
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+        email = data.get('email')
+        full_name = data.get('full_name')
+
+        if not username or not password or not email or not full_name:
+            return {"error": "Missing required fields"}, 400
+
+        if usr.user_exists(username):
+            return {"error": "User already exists"}, 400
+
+        usr.add_user(username, password, {usr.EMAIL: email,
+                                          usr.FULL_NAME: full_name})
+        return {"success": "User registered successfully"}, 201
+
+
+@users.route('/login', methods=['POST'])
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+
+        if not username or not password:
+            return {"error": "Missing required fields"}, 400
+
+        if usr.authenticate_user(username, password):
+            return {"success": "User authenticated"}, 200
+        else:
+            return {"error": "Invalid username or password"}, 401
+
+
 user_fields = api.model('NewUser', {
     usr.NAME: fields.String,
     usr.EMAIL: fields.String,
