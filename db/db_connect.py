@@ -77,6 +77,8 @@ def connect_db():
 
 
 def fetch_all(collection, db=MENU_DB):
+    if client is None:
+        connect_db()
     ret = []
     for doc in client[db][collection].find():
         ret.append(doc)
@@ -87,6 +89,9 @@ def fetch_one(collection, filt, db=MENU_DB):
     """
     Find with a filter and return on the first doc found.
     """
+    if client is None:
+        connect_db()
+
     for doc in client[db][collection].find(filt):
         doc['_id'] = str(doc['_id'])
         return doc
@@ -104,6 +109,9 @@ def insert_one(collection, doc, db=MENU_DB):
     """
     Insert a single doc into collection.
     """
+    if client is None:
+        connect_db()
+
     print(f'{db=}')
     return client[db][collection].insert_one(doc)
 
