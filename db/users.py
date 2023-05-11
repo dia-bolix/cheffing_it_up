@@ -54,6 +54,14 @@ def delete_user(username):
     dbc.del_one(dbc.LOGIN_PW_COLLECTION, {NAME: username})
 
 
+def get_hashed_password(username):
+    dbc.connect_db()
+    user = dbc.fetch_one(dbc.LOGIN_PW_COLLECTION, {NAME: username})
+    if user:
+        return user.get(dbc.PASSWORD)
+    return None
+
+
 def main():
     dbc.connect_db()
     users = get_users()
