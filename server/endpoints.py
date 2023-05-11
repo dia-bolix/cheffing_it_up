@@ -10,7 +10,7 @@ import werkzeug.exceptions as wz
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS, cross_origin
 
-# import db.db as db
+import db.db_connect as db
 
 
 import db.food_types as ftyp
@@ -27,6 +27,8 @@ CORS(app, origins=["https://cheffing-it-up.herokuapp.com/",
 RECIPES_NS = 'recipes'
 USERS_NS = 'users'
 FOOD_TYPES_NS = 'food_types'
+DEVELOPER_NS = 'developer'
+
 
 users = Namespace(USERS_NS, 'Users')
 api.add_namespace(users)
@@ -34,6 +36,8 @@ food_types = Namespace(FOOD_TYPES_NS, 'Food_Types')
 api.add_namespace(food_types)
 recipes = Namespace(RECIPES_NS, 'Recipes')
 api.add_namespace(recipes)
+developer = Namespace(DEVELOPER_NS, 'Developer')
+api.add_namespace(developer)
 
 
 LIST = 'list'
@@ -78,6 +82,9 @@ USER_LIST_NM = f'{USERS_NS}_list'
 USER_DETAILS = f'/{USERS_NS}/{DETAILS}'
 USER_ADD = f'/{ADD}'
 USER_ADD_W_NS = f'{USERS_NS}/{ADD}'
+
+DEVELOPER_DEL = f'/{DELETE}'
+DEVELOPER_DEL_W_NS = f'{DEVELOPER_NS}/{DELETE}'
 
 
 @api.route(HELLO)
@@ -408,7 +415,7 @@ class AddUser(Resource):
         usr.add_user(name, request.json)
 
 
-@api.route('/endpoints')
+@developer.route('/endpoints')
 class Endpoints(Resource):
     """
     This class will serve as live, fetchable documentation of what endpoints
@@ -421,3 +428,18 @@ class Endpoints(Resource):
         """
         endpoints = sorted(rule.rule for rule in api.app.url_map.iter_rules())
         return {"Available endpoints": endpoints}
+
+
+@developer.route(DEVELOPER_DEL)
+class DeleteAll(Resource):
+    "This endpoint will delete all the recipes in the mongodb database."
+
+    def delete(self):
+        """
+        This endpoint will delete all the recipes in the mongodb database.
+        """
+        deleted = db.del_all(fm.MENU_COLLECT)
+        if deleted:
+            return {'message': 'Everything deleted successfully'}
+        else:
+            raise wz.NotFound('Nothing was deleted.')

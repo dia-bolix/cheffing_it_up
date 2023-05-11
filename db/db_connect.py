@@ -126,3 +126,11 @@ def del_one(collection, filt, db=MENU_DB):
 
 def update_one(collection, query, update, db=MENU_DB):
     return client[db][collection].update_one(query, update)
+
+
+def del_all(collection, db=MENU_DB):
+    if client is None:
+        connect_db()
+    # return client[db].list_collection_names()
+    result = client[db][collection].delete_many({})
+    return result.deleted_count
